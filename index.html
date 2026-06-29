@@ -112,50 +112,54 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);ov
 .side-wa svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
 
 /* ════════════════════════════════
-   HERO — full-width image slideshow
+   HERO — image strip + info panel
 ════════════════════════════════ */
-.hero{position:relative;width:100%;overflow:hidden;background:var(--green-dark)}
-.hero-slides{position:relative;width:100%;height:480px}
+.hero{width:100%;background:var(--green-dark)}
+
+/* TOP: pure photo strip — no overlay, no text */
+.hero-slides{
+  position:relative;width:100%;height:380px;overflow:hidden;
+}
 .hero-slide{
   position:absolute;inset:0;opacity:0;transition:opacity .75s ease;
   background-size:cover;background-position:center;
 }
 .hero-slide.active{opacity:1;z-index:1}
-.hero-slide::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.2) 50%, rgba(0,0,0,.1) 100%);
-}
-/* text overlaid bottom-left */
-.hero-slide-img{display:none}
-.hero-slide-content{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:40px 48px 60px;z-index:2;
-  max-width:600px;
-}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f5c842;margin-bottom:10px}
-.hero-title{font-family:'Playfair Display',serif;font-size:40px;color:#fff;line-height:1.15;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
-.hero-desc{color:rgba(255,255,255,.88);font-size:15px;line-height:1.65;margin-bottom:22px;max-width:480px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.hero-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--gold);color:#fff;border:none;
-  padding:12px 24px;border-radius:9px;font-size:14px;font-weight:700;
-  cursor:pointer;transition:background .15s;width:fit-content;
-}
-.hero-cta:hover{background:#a36d08}
-/* dots + arrows */
+.hero-slide-content{display:none} /* hidden — text goes in panel below */
+
+/* arrows + dots sit inside the photo strip */
 .hero-controls{
-  position:absolute;bottom:18px;right:32px;
-  display:flex;align-items:center;gap:10px;z-index:10;
+  position:absolute;bottom:14px;right:20px;
+  display:flex;align-items:center;gap:8px;z-index:10;
 }
-.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;padding:0;transition:all .25s}
+.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);border:none;cursor:pointer;padding:0;transition:all .25s}
 .h-dot.active{background:#f5c842;width:22px;border-radius:4px}
 .hero-arrow{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);
-  color:#fff;font-size:16px;font-weight:700;cursor:pointer;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(0,0,0,.3);border:1.5px solid rgba(255,255,255,.3);
+  color:#fff;font-size:15px;font-weight:700;cursor:pointer;
   display:flex;align-items:center;justify-content:center;transition:background .15s;
 }
-.hero-arrow:hover{background:rgba(255,255,255,.3)}
+.hero-arrow:hover{background:rgba(0,0,0,.55)}
+
+/* BOTTOM: green info panel — same width as image, clearly separate */
+.hero-info-panel{
+  background:var(--green-dark);
+  width:100%;padding:28px 48px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;
+}
+.hero-panel-text{flex:1;min-width:0}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f5c842;margin-bottom:8px}
+.hero-title{font-family:'Playfair Display',serif;font-size:30px;color:#fff;line-height:1.2;margin-bottom:8px}
+.hero-desc{color:rgba(255,255,255,.75);font-size:14px;line-height:1.6;max-width:560px}
+.hero-cta{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#fff;border:none;
+  padding:12px 24px;border-radius:9px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+}
+.hero-cta:hover{background:#a36d08}
 
 /* ════════════════════════════════
    CATEGORY TILES — Eroski style
@@ -473,9 +477,9 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20p
   .topbar{padding:6px 14px}
   .navbar{top:32px}
   .filter-strip{top:94px}
-  .hero-slides{height:320px}
-  .hero-slide-content{padding:20px 20px 44px}
-  .hero-title{font-size:26px}
+  .hero-slides{height:240px}
+  .hero-info-panel{padding:20px 18px 24px}
+  .hero-title{font-size:22px}
   .cat-tiles{grid-template-columns:repeat(2,1fr)}
   .cat-tile:first-child{grid-column:span 2;grid-row:span 1}
   .about-inner,.contact-grid,.footer-grid{grid-template-columns:1fr}
@@ -563,21 +567,25 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20p
     <span></span><span></span><span></span>
   </button>
   <div class="nav-brand">Faith <span>Afro</span> Shop</div>
-  <div class="nav-right">
-    <a href="https://wa.me/34604884389" target="_blank" class="wa-nav-btn">
-      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp
-    </a>
-  </div>
+  <div class="nav-right"></div>
 </header>
 
 <!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-slides" id="heroSlides"></div>
-  <div class="hero-controls" id="heroControls">
-    <button class="hero-arrow" onclick="prevHero()">&#8592;</button>
-    <div id="heroDots"></div>
-    <button class="hero-arrow" onclick="nextHero()">&#8594;</button>
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-controls" id="heroControls">
+      <button class="hero-arrow" onclick="prevHero()">&#8592;</button>
+      <div id="heroDots"></div>
+      <button class="hero-arrow" onclick="nextHero()">&#8594;</button>
+    </div>
+  </div>
+  <div class="hero-info-panel" id="heroInfoPanel">
+    <div class="hero-panel-text">
+      <div class="hero-eyebrow" id="heroEyebrow"></div>
+      <div class="hero-title" id="heroTitle"></div>
+      <div class="hero-desc" id="heroDesc"></div>
+    </div>
+    <button class="hero-cta" id="heroCtaBtn"></button>
   </div>
 </section>
 
@@ -906,7 +914,6 @@ function buildHero() {
   var dotsEl = document.getElementById('heroDots');
   var featured = FEATURED.map(function(id) { return PRODUCTS.find(function(p) { return p.id === id; }); });
 
-  // Real shop photos for background
   var heroPhotos = [
     'images/sectiion_18.jpg',
     'images/section_7.jpeg',
@@ -919,21 +926,7 @@ function buildHero() {
   featured.forEach(function(p, i) {
     var slide = document.createElement('div');
     slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
-    // Set the shop photo as full-width background
     slide.style.backgroundImage = 'url(' + heroPhotos[i % heroPhotos.length] + ')';
-
-    // Text content overlaid bottom-left
-    var cnt = document.createElement('div');
-    cnt.className = 'hero-slide-content';
-    cnt.innerHTML =
-      '<div class="hero-eyebrow">' + p.cat.toUpperCase() + '</div>' +
-      '<div class="hero-title">' + p.name[lang] + '</div>' +
-      '<div class="hero-desc">' + p.desc[lang] + '</div>' +
-      '<button class="hero-cta" onclick="openQtyPopup(' + p.id + ',event)">' +
-        (lang === 'es' ? 'A\u00F1adir a la cesta \u2192' : 'Add to basket \u2192') +
-      '</button>';
-
-    slide.appendChild(cnt);
     container.appendChild(slide);
 
     var dot = document.createElement('button');
@@ -941,7 +934,22 @@ function buildHero() {
     (function(idx) { dot.addEventListener('click', function() { goToSlide(idx); }); })(i);
     dotsEl.appendChild(dot);
   });
+
+  // Set initial info panel content
+  updateHeroPanel(0);
   startSlideTimer();
+}
+
+function updateHeroPanel(idx) {
+  var featured = FEATURED.map(function(id) { return PRODUCTS.find(function(p) { return p.id === id; }); });
+  var p = featured[idx];
+  if (!p) return;
+  document.getElementById('heroEyebrow').textContent = p.cat.toUpperCase();
+  document.getElementById('heroTitle').textContent = p.name[lang];
+  document.getElementById('heroDesc').textContent = p.desc[lang];
+  var btn = document.getElementById('heroCtaBtn');
+  btn.textContent = lang === 'es' ? 'A\u00F1adir a la cesta \u2192' : 'Add to basket \u2192';
+  btn.onclick = function(e) { openQtyPopup(p.id, e); };
 }
 
 function goToSlide(n) {
@@ -953,6 +961,7 @@ function goToSlide(n) {
   currentSlide = (n + slides.length) % slides.length;
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
+  updateHeroPanel(currentSlide);
 }
 function nextHero() { goToSlide(currentSlide + 1); resetSlideTimer(); }
 function prevHero() { goToSlide(currentSlide - 1); resetSlideTimer(); }
