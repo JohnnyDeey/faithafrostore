@@ -239,6 +239,8 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);ov
   display:flex;align-items:center;justify-content:center;
   background-size:cover;background-position:center;
 }
+.p-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.p-thumb-img[src=""], .p-thumb-img:not([src]){display:none}
 .p-thumb-emoji{font-size:62px;position:relative;z-index:1}
 /* placeholder colour tints */
 .bg-green{background:#e9f5ee}.bg-yellow{background:#fff8e1}
@@ -518,11 +520,12 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20p
     <a href="#shop" onclick="filterAndGo('all')">✨ <span data-es="Todos" data-en="All">Todos</span></a>
     <a href="#shop" onclick="filterAndGo('grains')">🌾 <span data-es="Granos y Harinas" data-en="Grains & Flour">Granos y Harinas</span></a>
     <a href="#shop" onclick="filterAndGo('veg')">🥬 <span data-es="Verduras" data-en="Vegetables">Verduras</span></a>
-    <a href="#shop" onclick="filterAndGo('spices')">🌶️ <span data-es="Especias" data-en="Spices">Especias</span></a>
+    <a href="#shop" onclick="filterAndGo('seafood')">🐟 <span data-es="Pescado Seco" data-en="Dried Seafood">Pescado Seco</span></a>
     <a href="#shop" onclick="filterAndGo('drinks')">🍹 <span data-es="Bebidas" data-en="Drinks">Bebidas</span></a>
     <a href="#shop" onclick="filterAndGo('oil')">🫙 <span data-es="Aceites y Salsas" data-en="Oils & Sauces">Aceites y Salsas</span></a>
-    <a href="#shop" onclick="filterAndGo('snacks')">🍿 <span data-es="Snacks" data-en="Snacks">Snacks</span></a>
-    <a href="#shop" onclick="filterAndGo('frozen')">❄️ <span data-es="Congelados" data-en="Frozen">Congelados</span></a>
+    <a href="#shop" onclick="filterAndGo('beauty')">💆 <span data-es="Belleza y Cuidado" data-en="Beauty & Care">Belleza y Cuidado</span></a>
+    <a href="#shop" onclick="filterAndGo('kitchen')">🪣 <span data-es="Cocina Africana" data-en="African Kitchen">Cocina Africana</span></a>
+    <a href="#shop" onclick="filterAndGo('fresh')">🧅 <span data-es="Frescos" data-en="Fresh Produce">Frescos</span></a>
   </div>
   <div class="side-bottom">
     <a href="https://wa.me/34604884389" target="_blank" class="side-wa">
@@ -801,44 +804,132 @@ var qtyUnit = '';
 var modalProduct = null;
 
 var CATS = [
-  {id:'all',   es:'Todos',          en:'All',          icon:'✨', color:'ct-green',  emoji:'🌍', count:'24'},
-  {id:'grains',es:'Granos y Harinas',en:'Grains & Flour',icon:'🌾',color:'ct-yellow', emoji:'🌾', count:'4'},
-  {id:'veg',   es:'Verduras',       en:'Vegetables',   icon:'🥬', color:'ct-green',  emoji:'🥬', count:'5'},
-  {id:'spices',es:'Especias',       en:'Spices',       icon:'🌶️',color:'ct-red',    emoji:'🌶️',count:'4'},
-  {id:'drinks',es:'Bebidas',        en:'Drinks',       icon:'🍹', color:'ct-blue',   emoji:'🍹', count:'4'},
-  {id:'oil',   es:'Aceites y Salsas',en:'Oils & Sauces',icon:'🫙',color:'ct-orange', emoji:'🫙', count:'3'},
-  {id:'snacks',es:'Snacks',         en:'Snacks',       icon:'🍿', color:'ct-brown',  emoji:'🍿', count:'3'},
-  {id:'frozen',es:'Congelados',     en:'Frozen',       icon:'❄️', color:'ct-teal',   emoji:'❄️', count:'1'},
+  {id:'all',    es:'Todos',            en:'All',              icon:'✨', color:'ct-green',  emoji:'🌍', count:'40+'},
+  {id:'grains', es:'Granos y Harinas', en:'Grains & Flour',   icon:'🌾', color:'ct-yellow', emoji:'🌾', count:'10'},
+  {id:'seafood',es:'Pescado Seco',     en:'Dried Seafood',    icon:'🐟', color:'ct-orange', emoji:'🐟', count:'4'},
+  {id:'drinks', es:'Bebidas',          en:'Drinks',           icon:'🍹', color:'ct-blue',   emoji:'🍹', count:'8'},
+  {id:'oil',    es:'Aceites y Salsas', en:'Oils & Sauces',    icon:'🫙', color:'ct-orange', emoji:'🫙', count:'5'},
+  {id:'beauty', es:'Belleza y Cuidado',en:'Beauty & Care',    icon:'💆', color:'ct-purple', emoji:'💆', count:'8'},
+  {id:'kitchen',es:'Cocina Africana',  en:'African Kitchen',  icon:'🪣', color:'ct-brown',  emoji:'🪣', count:'5'},
+  {id:'fresh',  es:'Frescos',          en:'Fresh Produce',    icon:'🧅', color:'ct-green',  emoji:'🧅', count:'3'},
 ];
 
 var PRODUCTS = [
-  {id:1, name:{es:'Garri (Ijebu)',en:'Garri (Ijebu)'}, desc:{es:'Hojuelas de yuca fermentada, perfectas para eba o para tomar frías con cacahuetes.',en:'Fine fermented cassava flakes, perfect for eba or drinking cold with groundnuts.'}, emoji:'🌾',cat:'grains',bg:'bg-yellow',badge:'popular'},
-  {id:2, name:{es:'Harina de Sémola',en:'Semolina Flour'}, desc:{es:'Sémola de trigo fina, ideal para hacer swallow suave y elástico.',en:'Fine wheat semolina, ideal for making smooth stretchy swallow.'}, emoji:'🫙',cat:'grains',bg:'bg-green',badge:null},
-  {id:3, name:{es:'Harina de Ñame (Elubo)',en:'Yam Flour (Elubo)'}, desc:{es:'Harina de ñame seco premium para ñame machacado auténtico.',en:'Premium dried yam flour for authentic pounded yam.'}, emoji:'🌿',cat:'grains',bg:'bg-yellow',badge:null},
-  {id:4, name:{es:'Frijoles Carilla',en:'Black-Eye Beans'}, desc:{es:'Frijoles carilla secos, esenciales para moi moi y akara.',en:'Dried black-eyed peas, essential for moi moi and akara.'}, emoji:'🫘',cat:'grains',bg:'bg-orange',badge:'organic'},
-  {id:5, name:{es:'Plátano Verde',en:'Green Plantain'}, desc:{es:'Plátano macho firme para freír, hervir o hacer chips.',en:'Firm unripe plantain for frying, boiling or making chips.'}, emoji:'🍌',cat:'veg',bg:'bg-yellow',badge:'organic'},
-  {id:6, name:{es:'Plátano Maduro',en:'Ripe Plantain'}, desc:{es:'Plátano amarillo dulce y suave, perfecto para dodo.',en:'Sweet soft yellow plantain, perfect for dodo.'}, emoji:'🍌',cat:'veg',bg:'bg-orange',badge:'organic'},
-  {id:7, name:{es:'Okra Fresca',en:'Fresh Okra'}, desc:{es:'Vainas de okra tiernas para sopas y guisos.',en:'Tender okra pods for soups and stews.'}, emoji:'🥒',cat:'veg',bg:'bg-green',badge:'organic'},
-  {id:8, name:{es:'Berenjena Africana',en:'African Eggplant'}, desc:{es:'Huevos de jardín redondos, sabor suave y ligeramente amargo.',en:'Round garden eggs with a mild, slightly bitter flavour.'}, emoji:'🍆',cat:'veg',bg:'bg-purple',badge:'new'},
-  {id:9, name:{es:'Hoja Amarga Seca',en:'Dried Bitter Leaf'}, desc:{es:'Vernonia amygdalina seca para sopas tradicionales.',en:'Dried Vernonia amygdalina for traditional soups.'}, emoji:'🍃',cat:'veg',bg:'bg-green',badge:null},
-  {id:10,name:{es:'Camarón Seco Molido',en:'Ground Crayfish'}, desc:{es:'Camarones ahumados y molidos — la base de la cocina de África Occidental.',en:'Smoked ground dried shrimp — the backbone of West African cooking.'}, emoji:'🦐',cat:'spices',bg:'bg-orange',badge:'popular'},
-  {id:11,name:{es:'Iru (Algarrobo)',en:'Iru (Locust Bean)'}, desc:{es:'Frijoles de algarrobo fermentados, con profundo sabor umami.',en:'Fermented locust beans with a deep earthy umami flavour.'}, emoji:'🫘',cat:'spices',bg:'bg-yellow',badge:null},
-  {id:12,name:{es:'Mezcla de Especias Suya',en:'Suya Spice Mix'}, desc:{es:'Auténtica mezcla Hausa de cacahuete, jengibre y pimentón.',en:'Authentic Hausa blend of groundnut, ginger and paprika.'}, emoji:'🌶️',cat:'spices',bg:'bg-red',badge:'new'},
-  {id:13,name:{es:'Hojas de Uziza',en:'Uziza Leaves'}, desc:{es:'Hoja de pimienta africana seca para sopas y caldo.',en:'Dried African pepper leaf for soups and pepper soup.'}, emoji:'🌿',cat:'spices',bg:'bg-green',badge:null},
-  {id:14,name:{es:'Malta Guinness',en:'Malta Guinness'}, desc:{es:'Clásica bebida de malta sin alcohol, rica y nutritiva.',en:'Classic non-alcoholic malt drink, rich and nourishing.'}, emoji:'🍺',cat:'drinks',bg:'bg-yellow',badge:'popular'},
-  {id:15,name:{es:'Concentrado de Zobo',en:'Zobo Concentrate'}, desc:{es:'Rosa de Jamaica — dulce, ácida y muy refrescante.',en:'Hibiscus roselle concentrate — sweet, tangy and refreshing.'}, emoji:'🫖',cat:'drinks',bg:'bg-red',badge:'organic'},
-  {id:16,name:{es:'Mezcla Chapman',en:'Chapman Mix'}, desc:{es:'Base del cóctel nigeriano — afrutado y festivo.',en:'Nigerian cocktail base — fruity, bubbly and festive.'}, emoji:'🍹',cat:'drinks',bg:'bg-orange',badge:'new'},
-  {id:17,name:{es:'Bebida Piña y Jengibre',en:'Pineapple Ginger Drink'}, desc:{es:'Piña y jengibre tropical fermentados, naturalmente probiótico.',en:'Fermented tropical pineapple and ginger, naturally probiotic.'}, emoji:'🍍',cat:'drinks',bg:'bg-yellow',badge:'organic'},
-  {id:18,name:{es:'Aceite de Palma Rojo',en:'Red Palm Oil'}, desc:{es:'Aceite de palma puro sin refinar — el alma de la cocina africana.',en:'Pure unrefined red palm oil — the soul of West African cooking.'}, emoji:'🫙',cat:'oil',bg:'bg-orange',badge:'popular'},
-  {id:19,name:{es:'Aceite de Coco Virgen',en:'Virgin Coconut Oil'}, desc:{es:'Prensado en frío, sin refinar. Ideal para cocinar y cuidado de la piel.',en:'Cold-pressed, unrefined. Great for cooking and skin care.'}, emoji:'🥥',cat:'oil',bg:'bg-green',badge:'organic'},
-  {id:20,name:{es:'Salsa Shito',en:'Shito Sauce'}, desc:{es:'Salsa de pimienta ghanesa con pescado ahumado y chiles.',en:'Ghanaian black pepper sauce with smoked fish and chillies.'}, emoji:'🌶️',cat:'oil',bg:'bg-red',badge:null},
-  {id:21,name:{es:'Chin Chin',en:'Chin Chin'}, desc:{es:'Crujiente pastelería frita dulce. Un clásico nigeriano.',en:'Crunchy sweet deep-fried pastry. A Nigerian classic.'}, emoji:'🥨',cat:'snacks',bg:'bg-yellow',badge:'popular'},
-  {id:22,name:{es:'Chips de Plátano',en:'Plantain Chips'}, desc:{es:'Chips de plátano crujientes, ligeramente salados o especiados.',en:'Crispy plantain chips, lightly salted or spiced.'}, emoji:'🍟',cat:'snacks',bg:'bg-orange',badge:null},
-  {id:23,name:{es:'Mezcla Puff Puff',en:'Puff Puff Mix'}, desc:{es:'Mezcla para buñuelos nigerianos — solo añade agua y fríe.',en:'Nigerian fritter mix — just add water, fry and enjoy.'}, emoji:'🍩',cat:'snacks',bg:'bg-yellow',badge:'new'},
-  {id:24,name:{es:'Fufu Congelado',en:'Frozen Fufu'}, desc:{es:'Fufu de yuca listo para cocinar. Textura auténtica, sin complicaciones.',en:'Ready-to-cook cassava fufu. Authentic texture, zero hassle.'}, emoji:'⚪',cat:'frozen',bg:'bg-blue',badge:null},
+  /* ── GRAINS & FLOUR ── */
+  {id:1,  name:{es:'Ñame Machacado 21st Century 25kg',en:'21st Century Pounded Yam 25kg'},
+          desc:{es:'Harina de ñame nigeriana premium. Lista en minutos, textura suave y auténtica.',en:'Premium Nigerian pounded yam flour. Ready in minutes, smooth and authentic texture.'},
+          img:'images/pounded-yam.jpg', emoji:'🌾', cat:'grains', bg:'bg-yellow', badge:'popular'},
+  {id:2,  name:{es:'Ñame Machacado Africa Lady 5kg',en:'Africa Lady Pounded Yam 5kg'},
+          desc:{es:'Harina de ñame de calidad superior, perfecta para preparar iyan con cualquier sopa.',en:'Superior quality yam flour, perfect for preparing iyan with any soup.'},
+          img:'images/africa-lady-yam.jpg', emoji:'🍚', cat:'grains', bg:'bg-yellow', badge:null},
+  {id:3,  name:{es:'Sémola Cereal Puglia 5kg',en:'Cereal Puglia Semolina 5kg'},
+          desc:{es:'Sémola de trigo duro fina (Finot de Blé Dur). Ideal para tuwo, semolina swallow y couscous.',en:'Fine durum wheat semolina. Ideal for tuwo, semolina swallow and couscous.'},
+          img:'images/semolina.jpg', emoji:'🌾', cat:'grains', bg:'bg-green', badge:null},
+  {id:4,  name:{es:'Fufu de Plátano African Beauty',en:'African Beauty Plantain Fufu'},
+          desc:{es:'Harina de plátano para fufu. Suave, sin gluten y fácil de preparar.',en:'Plantain flour for fufu. Smooth, gluten-free and easy to prepare.'},
+          img:'images/plantain-fufu.jpg', emoji:'🍌', cat:'grains', bg:'bg-orange', badge:'popular'},
+  {id:5,  name:{es:'Fécola de Mandioca (Yuca) 5kg',en:'Cassava Starch (Fécula) 5kg'},
+          desc:{es:'Almidón puro de mandioca. Esencial para eba, fufu y muchas recetas africanas.',en:'Pure cassava starch. Essential for eba, fufu and many African recipes.'},
+          img:'images/cassava.jpg', emoji:'🫙', cat:'grains', bg:'bg-yellow', badge:null},
+  {id:6,  name:{es:'Garri Blanco Africa Lady',en:'Africa Lady White Garri'},
+          desc:{es:'Copos de yuca fermentada y tostada. Para eba o para tomar fríos con agua y cacahuetes.',en:'Fermented roasted cassava flakes. For eba or eaten cold with water and groundnuts.'},
+          img:'images/garri.jpg', emoji:'🌾', cat:'grains', bg:'bg-yellow', badge:'popular'},
+  {id:7,  name:{es:'Arroz President Parboiled 20kg',en:'President Parboiled Rice 20kg'},
+          desc:{es:'Arroz basmati parboiled Lal Qilla de alta calidad. Grano largo, suelto y aromático.',en:'High quality Lal Qilla parboiled basmati rice. Long grain, fluffy and aromatic.'},
+          img:'images/rice.jpg', emoji:'🍚', cat:'grains', bg:'bg-green', badge:null},
+  {id:8,  name:{es:'Frijoles Carilla Africa Lady',en:'Africa Lady Black-Eye Beans'},
+          desc:{es:'Frijoles carilla pelados y secos. Esenciales para moi moi, akara y potaje de frijoles.',en:'Peeled dried black-eye beans. Essential for moi moi, akara and bean porridge.'},
+          img:'images/beans.jpg', emoji:'🫘', cat:'grains', bg:'bg-orange', badge:null},
+  {id:9,  name:{es:'Nidos en Polvo Nido (Nestle)',en:'Nido Milk Powder (Nestle)'},
+          desc:{es:'Leche entera en polvo Nestle Nido. Nutritiva y cremosa, ideal para el desayuno.',en:'Nestle Nido full cream milk powder. Nutritious and creamy, ideal for breakfast.'},
+          img:'images/nido.jpg', emoji:'🥛', cat:'grains', bg:'bg-blue', badge:null},
+  {id:10, name:{es:'Fideos Sabor Pollo (Chicken Noodles)',en:'Chicken Flavour Noodles'},
+          desc:{es:'Fideos instantáneos sabor pollo. Rápidos, sabrosos y muy populares en toda África.',en:'Instant chicken flavour noodles. Quick, tasty and hugely popular across Africa.'},
+          img:'images/noodles.jpg', emoji:'🍜', cat:'grains', bg:'bg-yellow', badge:'popular'},
+
+  /* ── DRIED SEAFOOD ── */
+  {id:11, name:{es:'Cangrejo Seco Joy Unlimited',en:'Joy Unlimited Dried Crayfish'},
+          desc:{es:'Camarones ahumados y secos Joy Unlimited. La base de toda buena sopa nigeriana.',en:'Joy Unlimited smoked dried crayfish. The backbone of every good Nigerian soup.'},
+          img:'images/crayfish.jpg', emoji:'🦐', cat:'seafood', bg:'bg-orange', badge:'popular'},
+  {id:12, name:{es:'Gambas Secas Joy Unlimited',en:'Joy Unlimited Dried Prawns'},
+          desc:{es:'Gambas secas enteras de gran calidad. Añaden sabor intenso a sopas y guisos.',en:'Whole dried prawns of great quality. Add intense flavour to soups and stews.'},
+          img:'images/dried-prawns.jpg', emoji:'🍤', cat:'seafood', bg:'bg-orange', badge:null},
+  {id:13, name:{es:'Bacalao Seco (Stockfish / Panla)',en:'Dried Stockfish (Panla)'},
+          desc:{es:'Bacalao noruego seco entero (Norge). Indispensable para egusi, ofe akwu y pepper soup.',en:'Whole dried Norwegian stockfish (Norge). Indispensable for egusi, ofe akwu and pepper soup.'},
+          img:'images/stockfish.jpg', emoji:'🐟', cat:'seafood', bg:'bg-yellow', badge:null},
+  {id:14, name:{es:'Pescado Ahumado Entero',en:'Whole Smoked Fish'},
+          desc:{es:'Pescado ahumado entero de África Occidental. Sabor profundo y auténtico para tus sopas.',en:'Whole smoked West African fish. Deep authentic flavour for your soups.'},
+          img:'images/smoked-fish.jpg', emoji:'🐠', cat:'seafood', bg:'bg-orange', badge:null},
+
+  /* ── DRINKS ── */
+  {id:15, name:{es:'Malta Guinness 330ml',en:'Malta Guinness 330ml'},
+          desc:{es:'La bebida de malta sin alcohol más popular de Nigeria. Rica, nutritiva y refrescante.',en:'Nigeria’s most popular non-alcoholic malt drink. Rich, nutritious and refreshing.'},
+          img:'images/malta-guinness.jpg', emoji:'🍺', cat:'drinks', bg:'bg-yellow', badge:'popular'},
+  {id:16, name:{es:'Maltex Bebida de Malta Sin Alcohol',en:'Maltex Alcohol-Free Malt Drink'},
+          desc:{es:'Bebida de malta 100% sin alcohol. Suave, dulce y muy refrescante.',en:'100% alcohol-free malt beverage. Smooth, sweet and very refreshing.'},
+          img:'images/maltex.jpg', emoji:'🥤', cat:'drinks', bg:'bg-red', badge:null},
+  {id:17, name:{es:'Coca-Cola, Fanta y 7Up (Fría)',en:'Coca-Cola, Fanta & 7Up (Cold)'},
+          desc:{es:'Refrescos fríos disponibles en nuestra nevera. Coca-Cola, Fanta naranja, 7Up y más.',en:'Cold soft drinks from our fridge. Coca-Cola, Fanta orange, 7Up and more.'},
+          img:'images/soft-drinks.jpg', emoji:'🥤', cat:'drinks', bg:'bg-red', badge:null},
+  {id:18, name:{es:'Zumos de Fruta Tropicales',en:'Tropical Fruit Juices'},
+          desc:{es:'Zumos tropicales variados — mango, maracuyá, guayaba y más. Frescos en nevera.',en:'Assorted tropical juices — mango, passion fruit, guava and more. Chilled in fridge.'},
+          img:'images/juices.jpg', emoji:'🧃', cat:'drinks', bg:'bg-orange', badge:null},
+  {id:19, name:{es:'Vino Tinto y Jerez',en:'Red Wine & Sherry'},
+          desc:{es:'Selección de vinos tintos y jerez disponibles en tienda.',en:'Selection of red wines and sherry available in store.'},
+          img:'images/wine.jpg', emoji:'🍷', cat:'drinks', bg:'bg-red', badge:null},
+  {id:20, name:{es:'Cerveza (Heineken, Star, Stout)',en:'Beer (Heineken, Star, Stout)'},
+          desc:{es:'Cervezas africanas e internacionales. Guinness Stout, Star Lager, Heineken y más.',en:'African and international beers. Guinness Stout, Star Lager, Heineken and more.'},
+          img:'images/beer.jpg', emoji:'🍻', cat:'drinks', bg:'bg-yellow', badge:null},
+
+  /* ── OILS & SAUCES ── */
+  {id:21, name:{es:'Aceite de Palma Rojo',en:'Red Palm Oil'},
+          desc:{es:'Aceite de palma rojo puro sin refinar. El alma de la cocina de África Occidental.',en:'Pure unrefined red palm oil. The soul of West African cooking.'},
+          img:'images/palm-oil.jpg', emoji:'🫙', cat:'oil', bg:'bg-orange', badge:'popular'},
+  {id:22, name:{es:'Aceites Varios (Pequeños)',en:'Assorted Oils (Small Bottles)'},
+          desc:{es:'Gran variedad de aceites y condimentos en botella pequeña. Maggi, bitters, aceites especiales.',en:'Wide variety of oils and condiments in small bottles. Maggi, bitters, special oils.'},
+          img:'images/oils.jpg', emoji:'🧴', cat:'oil', bg:'bg-green', badge:null},
+  {id:23, name:{es:'Tomate Triturado (Lata)',en:'Canned Crushed Tomatoes'},
+          desc:{es:'Tomate triturado en lata. Imprescindible para estofados, jollof rice y guisos africanos.',en:'Canned crushed tomatoes. Essential for stews, jollof rice and African dishes.'},
+          img:'images/tomato.jpg', emoji:'🍅', cat:'oil', bg:'bg-red', badge:null},
+  {id:24, name:{es:'Salsas Picantes Africanas',en:'African Hot Sauces'},
+          desc:{es:'Variedad de salsas picantes y condimentos africanos. Shito, pepper sauce y más.',en:'Variety of African hot sauces and condiments. Shito, pepper sauce and more.'},
+          img:'images/hot-sauce.jpg', emoji:'🌶️', cat:'oil', bg:'bg-red', badge:null},
+
+  /* ── BEAUTY & CARE ── */
+  {id:25, name:{es:'Dudu-Osun Jabón Negro Africano',en:'Dudu-Osun African Black Soap'},
+          desc:{es:'El auténtico jabón negro africano con extractos de plantas. Limpia, hidrata y unifica la piel.',en:'Authentic African black soap with plant extracts. Cleanses, moisturises and evens skin tone.'},
+          img:'images/black-soap.jpg', emoji:'🧼', cat:'beauty', bg:'bg-purple', badge:'popular'},
+  {id:26, name:{es:'Productos ORS Olive Oil',en:'ORS Olive Oil Hair Products'},
+          desc:{es:'Línea completa ORS Olive Oil para el cuidado del cabello afro: cremas, aceites y más.',en:'Full ORS Olive Oil line for Afro hair care: creams, oils and more.'},
+          img:'images/ors.jpg', emoji:'💆', cat:'beauty', bg:'bg-green', badge:null},
+  {id:27, name:{es:'Alisadores y Tratamientos Capilares',en:'Relaxers & Hair Treatments'},
+          desc:{es:'Amplia gama de alisadores, tintes y tratamientos capilares para todo tipo de cabello afro.',en:'Wide range of relaxers, dyes and hair treatments for all Afro hair types.'},
+          img:'images/relaxer.jpg', emoji:'💇', cat:'beauty', bg:'bg-purple', badge:null},
+  {id:28, name:{es:'Cremas Corporales y Lociones',en:'Body Creams & Lotions'},
+          desc:{es:'Cremas hidratantes, blanqueadoras y unificadoras. Marcas populares africanas y más.',en:'Moisturising, brightening and evening creams. Popular African brands and more.'},
+          img:'images/cream.jpg', emoji:'🧴', cat:'beauty', bg:'bg-yellow', badge:null},
+
+  /* ── AFRICAN KITCHEN ── */
+  {id:29, name:{es:'Mortero y Mano de Madera',en:'Wooden Mortar & Pestle'},
+          desc:{es:'Mortero y mano de madera tallada a mano. Tradicional y duradero, perfecto para especias.',en:'Hand-carved wooden mortar and pestle. Traditional and durable, perfect for spices.'},
+          img:'images/mortar.jpg', emoji:'🪣', cat:'kitchen', bg:'bg-yellow', badge:null},
+  {id:30, name:{es:'Platos y Cuencos de Barro',en:'Clay Dishes & Bowls'},
+          desc:{es:'Utensilios tradicionales de barro africano. Auténticos y decorativos.',en:'Traditional African clay utensils. Authentic and decorative.'},
+          img:'images/clay.jpg', emoji:'🍽️', cat:'kitchen', bg:'bg-orange', badge:null},
+  {id:31, name:{es:'Bolsas de Red (Varios Colores)',en:'Mesh Shopping Bags'},
+          desc:{es:'Bolsas de red reutilizables en varios colores. Prácticas para el mercado y las compras.',en:'Reusable mesh bags in various colours. Handy for market and everyday shopping.'},
+          img:'images/mesh-bag.jpg', emoji:'👜', cat:'kitchen', bg:'bg-green', badge:null},
+
+  /* ── FRESH PRODUCE ── */
+  {id:32, name:{es:'Cebollas Frescas',en:'Fresh Onions'},
+          desc:{es:'Cebollas frescas de calidad. Esenciales en toda cocina africana.',en:'Fresh quality onions. Essential in every African kitchen.'},
+          img:'images/onions.jpg', emoji:'🧅', cat:'fresh', bg:'bg-yellow', badge:null},
+  {id:33, name:{es:'Huevos Frescos',en:'Fresh Eggs'},
+          desc:{es:'Huevos frescos de granja disponibles en tienda.',en:'Fresh farm eggs available in store.'},
+          img:'images/eggs.jpg', emoji:'🥚', cat:'fresh', bg:'bg-yellow', badge:null},
 ];
 
-var FEATURED = [1,5,10,18,14,21];
+var FEATURED = [1,11,15,21,25,4];
 
 /* ══════════ LANGUAGE ══════════ */
 function setLang(l) {
@@ -868,8 +959,18 @@ function buildHero() {
     // image side — placeholder div with emoji, ready for real image
     var imgDiv = document.createElement('div');
     imgDiv.className = 'hero-slide-img ' + p.bg;
-    imgDiv.setAttribute('data-img', 'images/' + p.id + '.jpg'); // path for when real photo arrives
-    imgDiv.innerHTML = '<span style="font-size:120px;position:relative;z-index:1">' + p.emoji + '</span>';
+    imgDiv.setAttribute('data-img', p.img || ('images/' + p.id + '.jpg'));
+    if(p.img){
+      var heroImg = document.createElement('img');
+      heroImg.src = p.img; heroImg.alt = p.name.en;
+      heroImg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover';
+      heroImg.onerror = function(){ this.style.display='none'; };
+      imgDiv.appendChild(heroImg);
+    }
+    var heroEmoji = document.createElement('span');
+    heroEmoji.style.cssText = 'font-size:120px;position:relative;z-index:1';
+    heroEmoji.textContent = p.emoji;
+    imgDiv.appendChild(heroEmoji);
 
     // content overlay
     var cnt = document.createElement('div');
@@ -966,10 +1067,14 @@ function renderProducts(cat) {
     if (p.badge === 'popular') badgeHtml = '<span class="p-badge b-popular">' + (lang==='es'?'Popular':'Popular') + '</span>';
     var btnTxt = inCart
       ? '\u2713 ' + (lang==='es' ? 'En la cesta' : 'In basket')
-      : '+ ' + (lang==='es' ? 'Añadir' : 'Add');
+      : '+ ' + (lang==='es' ? 'A\u00F1adir' : 'Add');
+    var thumbHtml = p.img
+      ? '<img src="' + p.img + '" class="p-thumb-img" alt="' + p.name.en + '">'
+        + '<span class="p-thumb-emoji" style="position:relative;z-index:1">' + p.emoji + '</span>'
+      : '<span class="p-thumb-emoji">' + p.emoji + '</span>';
     return '<div class="p-card" onclick="openModal(' + p.id + ')">' +
-      '<div class="p-thumb ' + p.bg + '" data-img="images/' + p.id + '.jpg">' +
-        '<span class="p-thumb-emoji">' + p.emoji + '</span>' +
+      '<div class="p-thumb ' + p.bg + '">' +
+        thumbHtml +
         badgeHtml +
       '</div>' +
       '<div class="p-info">' +
@@ -1130,7 +1235,10 @@ function openModal(id) {
   var msg = lang === 'es'
     ? 'Hola! Me interesa: *' + p.name.es + '*. \u00BFMe pueden dar m\u00E1s informaci\u00F3n?'
     : 'Hi! I\'m interested in: *' + p.name.en + '*. Can you tell me more?';
-  document.getElementById('pModalVis').innerHTML = '<span class="' + p.bg + '" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px">' + p.emoji + '</span>';
+  var visHtml = '<div class="' + p.bg + '" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative">';
+  if(p.img) visHtml += '<img src="' + p.img + '" class="p-thumb-img" alt="' + p.name.en + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">';
+  visHtml += '<span style="position:relative;z-index:1">' + p.emoji + '</span></div>';
+  document.getElementById('pModalVis').innerHTML = visHtml;
   document.getElementById('pModalCat').textContent = p.cat;
   document.getElementById('pModalName').textContent = p.name[lang];
   document.getElementById('pModalDesc').textContent = p.desc[lang];
