@@ -804,14 +804,14 @@ var qtyUnit = '';
 var modalProduct = null;
 
 var CATS = [
-  {id:'all',    es:'Todos',            en:'All',              icon:'✨', color:'ct-green',  emoji:'🌍', count:'33', img:'images/section_18.jpg'},
-  {id:'grains', es:'Granos y Harinas', en:'Grains & Flour',   icon:'🌾', color:'ct-yellow', emoji:'🌾', count:'10', img:'images/section_9.jpg'},
-  {id:'seafood',es:'Pescado Seco',     en:'Dried Seafood',    icon:'🐟', color:'ct-orange', emoji:'🐟', count:'4',  img:'images/section_2.jpg'},
-  {id:'drinks', es:'Bebidas',          en:'Drinks',           icon:'🍹', color:'ct-blue',   emoji:'🍹', count:'6',  img:'images/section_13.jpg'},
-  {id:'oil',    es:'Aceites y Salsas', en:'Oils & Sauces',    icon:'🫙', color:'ct-orange', emoji:'🫙', count:'4',  img:'images/section_6.jpg'},
-  {id:'beauty', es:'Belleza y Cuidado',en:'Beauty & Care',    icon:'💆', color:'ct-purple', emoji:'💆', count:'4',  img:'images/section_4.jpg'},
-  {id:'kitchen',es:'Cocina Africana',  en:'African Kitchen',  icon:'🪣', color:'ct-brown',  emoji:'🪣', count:'3',  img:'images/section_1.jpg'},
-  {id:'fresh',  es:'Frescos',          en:'Fresh Produce',    icon:'🧅', color:'ct-green',  emoji:'🧅', count:'2',  img:'images/section_17.jpg'},
+  {id:'all',    es:'Todos',            en:'All',              icon:'✨', color:'ct-green',  emoji:'🌍', count:'33', img:'images/sectiion_18.jpg'},
+  {id:'grains', es:'Granos y Harinas', en:'Grains & Flour',   icon:'🌾', color:'ct-yellow', emoji:'🌾', count:'10', img:'images/section_9.jpeg'},
+  {id:'seafood',es:'Pescado Seco',     en:'Dried Seafood',    icon:'🐟', color:'ct-orange', emoji:'🐟', count:'4',  img:'images/section_2.jpeg'},
+  {id:'drinks', es:'Bebidas',          en:'Drinks',           icon:'🍹', color:'ct-blue',   emoji:'🍹', count:'6',  img:'images/section_13.jpeg'},
+  {id:'oil',    es:'Aceites y Salsas', en:'Oils & Sauces',    icon:'🫙', color:'ct-orange', emoji:'🫙', count:'4',  img:'images/section_6.jpeg'},
+  {id:'beauty', es:'Belleza y Cuidado',en:'Beauty & Care',    icon:'💆', color:'ct-purple', emoji:'💆', count:'4',  img:'images/section_4.jpeg'},
+  {id:'kitchen',es:'Cocina Africana',  en:'African Kitchen',  icon:'🪣', color:'ct-brown',  emoji:'🪣', count:'3',  img:'images/section_1.jpeg'},
+  {id:'fresh',  es:'Frescos',          en:'Fresh Produce',    icon:'🧅', color:'ct-green',  emoji:'🧅', count:'2',  img:'images/section_17.jpeg'},
 ];
 
 var PRODUCTS = [
@@ -927,8 +927,8 @@ function buildHero() {
     var imgDiv = document.createElement('div');
     imgDiv.className = 'hero-slide-img ' + p.bg;
     // Use real shop photos cycling through slides
-    var heroPhotos = ['images/section_18.jpg','images/section_7.jpg','images/section_12.jpg',
-                      'images/section_9.jpg','images/section_13.jpg','images/section_2.jpg'];
+    var heroPhotos = ['images/sectiion_18.jpg','images/section_7.jpeg','images/section_12.jpeg',
+                      'images/section_9.jpeg','images/section_13.jpeg','images/section_2.jpeg'];
     var heroPhoto = heroPhotos[i % heroPhotos.length];
     imgDiv.style.backgroundImage = 'url(' + heroPhoto + ')';
     imgDiv.style.backgroundSize = 'cover';
