@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faith Afro Shop — Productos Africanos y Tropicales, Bilbao</title>
+<meta name="description" content="Productos africanos y tropicales auténticos en Bilbao. Visítanos en Bailén Nº13, Bilbao.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1b5e35;--green-dark:#0e3d20;--green-light:#e9f5ee;
+  --gold:#c8850a;--dark:#111;--body:#3a3a3a;--gray:#777;
+  --border:#e4e4e4;--cream:#faf8f4;--white:#fff;--radius:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);overflow-x:hidden}
+
+/* ════════════════════════════════
+   TOPBAR  — always sticky, always visible
+════════════════════════════════ */
+.topbar{
+  position:sticky;top:0;z-index:500;
+  background:var(--green-dark);
+  padding:7px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.topbar-left{display:flex;align-items:center;gap:16px;flex:1;min-width:0}
+.topbar-item{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.8);white-space:nowrap}
+.topbar-item a{color:rgba(255,255,255,.8);text-decoration:none}
+.topbar-item a:hover{color:#fff}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+/* Language flags */
+.lang-switcher{display:flex;align-items:center;gap:5px}
+.lang-btn{
+  background:none;border:2px solid rgba(255,255,255,.25);cursor:pointer;
+  padding:3px 7px;border-radius:6px;
+  display:flex;align-items:center;gap:5px;
+  opacity:.7;transition:all .15s;
+}
+.lang-btn:hover{opacity:1;border-color:rgba(255,255,255,.5)}
+.lang-btn.active{opacity:1;border-color:#f5c842;background:rgba(255,255,255,.12)}
+.lang-btn svg{width:22px;height:15px;border-radius:2px;display:block;flex-shrink:0}
+.lang-btn span{font-size:11px;font-weight:700;color:#fff;letter-spacing:.5px}
+
+/* ════════════════════════════════
+   NAVBAR
+════════════════════════════════ */
+.navbar{
+  position:sticky;top:36px;z-index:400;
+  background:var(--white);border-bottom:1px solid var(--border);
+  height:62px;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.burger-btn{
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;gap:5px;padding:6px;
+}
+.burger-btn span{display:block;width:24px;height:2px;background:var(--dark);border-radius:2px;transition:.2s}
+.nav-brand{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-family:'Playfair Display',serif;font-size:22px;
+  color:var(--green-dark);white-space:nowrap;pointer-events:none;
+}
+.nav-brand span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.wa-nav-btn{
+  display:flex;align-items:center;gap:7px;
+  background:#25d366;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;
+  transition:background .15s;
+}
+.wa-nav-btn:hover{background:#1da851}
+.wa-nav-btn svg{width:16px;height:16px;fill:#fff;flex-shrink:0}
+
+/* ════════════════════════════════
+   SIDE MENU
+════════════════════════════════ */
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;opacity:0;pointer-events:none;transition:opacity .28s}
+.menu-overlay.open{opacity:1;pointer-events:all}
+.side-menu{
+  position:fixed;top:0;left:0;bottom:0;width:290px;
+  background:var(--green-dark);z-index:700;
+  transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.side-menu.open{transform:translateX(0)}
+.side-top{padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between}
+.side-logo{font-family:'Playfair Display',serif;font-size:19px;color:#fff}
+.side-logo span{color:#f5c842}
+.side-close{background:none;border:none;color:rgba(255,255,255,.6);font-size:24px;cursor:pointer;line-height:1;padding:2px}
+.side-close:hover{color:#fff}
+.side-nav{flex:1;overflow-y:auto;padding:12px 0}
+.side-section{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.3);padding:14px 20px 5px}
+.side-nav a{
+  display:flex;align-items:center;gap:12px;padding:12px 20px;
+  color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;font-weight:500;
+  border-left:3px solid transparent;transition:all .15s;
+}
+.side-nav a:hover{color:#fff;background:rgba(255,255,255,.07);border-left-color:#f5c842}
+.side-bottom{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
+.side-wa{
+  display:flex;align-items:center;gap:10px;
+  background:#25d366;color:#fff;text-decoration:none;
+  padding:11px 16px;border-radius:9px;font-size:13px;font-weight:700;
+  transition:background .15s;
+}
+.side-wa:hover{background:#1da851}
+.side-wa svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+
+/* ════════════════════════════════
+   HERO — full-width banner
+════════════════════════════════ */
+.hero{position:relative;width:100%;overflow:hidden;background:var(--green-dark)}
+.hero-slides{position:relative;width:100%;height:480px}
+.hero-slide{
+  position:absolute;inset:0;opacity:0;transition:opacity .75s ease;
+  display:flex;align-items:stretch;
+}
+.hero-slide.active{opacity:1;z-index:1}
+/* image side */
+.hero-slide-img{
+  flex:1;background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;
+  font-size:120px;
+  position:relative;
+}
+.hero-slide-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(14,61,32,.1),rgba(14,61,32,.7));
+}
+/* content overlaid on right side */
+.hero-slide-content{
+  position:absolute;right:0;top:0;bottom:0;width:46%;
+  background:linear-gradient(to right,transparent,var(--green-dark) 30%);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:48px 48px 48px 80px;z-index:2;
+}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f5c842;margin-bottom:12px}
+.hero-title{font-family:'Playfair Display',serif;font-size:38px;color:#fff;line-height:1.15;margin-bottom:12px}
+.hero-desc{color:rgba(255,255,255,.75);font-size:14px;line-height:1.65;margin-bottom:24px;max-width:280px}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#fff;border:none;
+  padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:background .15s;width:fit-content;
+}
+.hero-cta:hover{background:#a36d08}
+/* dots + arrows */
+.hero-controls{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;z-index:10;
+}
+.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:all .25s}
+.h-dot.active{background:#f5c842;width:22px;border-radius:4px}
+.hero-arrow{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);
+  color:#fff;font-size:16px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .15s;
+}
+.hero-arrow:hover{background:rgba(255,255,255,.3)}
+
+/* ════════════════════════════════
+   CATEGORY TILES — Eroski style
+════════════════════════════════ */
+.cats-section{background:var(--white);padding:36px 20px}
+.cats-inner{max-width:1080px;margin:0 auto}
+.section-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.section-divider{width:40px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:14px}
+.section-title{font-family:'Playfair Display',serif;font-size:28px;color:var(--green-dark);margin-bottom:24px}
+.cat-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat-tile{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  cursor:pointer;aspect-ratio:1/1;
+  transition:transform .18s,box-shadow .18s;
+}
+.cat-tile:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.13)}
+.cat-tile:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.cat-tile-bg{
+  width:100%;height:100%;min-height:140px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;background-size:cover;background-position:center;
+  transition:transform .3s;
+}
+.cat-tile:hover .cat-tile-bg{transform:scale(1.05)}
+.cat-tile-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 55%,transparent 100%);
+}
+.cat-tile-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:14px;color:#fff;
+}
+.cat-tile-label h3{font-size:15px;font-weight:700;line-height:1.2;margin-bottom:2px}
+.cat-tile-label span{font-size:11px;opacity:.8}
+.cat-tile:first-child .cat-tile-label h3{font-size:20px}
+/* tile colours */
+.ct-green{background:#1a4d2a}.ct-yellow{background:#4d3c00}.ct-orange{background:#4d2800}
+.ct-red{background:#4d0f0f}.ct-purple{background:#2a0f4d}.ct-blue{background:#0f2a4d}
+.ct-teal{background:#0f3d3d}.ct-brown{background:#3d1f0a}
+
+/* ════════════════════════════════
+   PRODUCT FILTER STRIP
+════════════════════════════════ */
+.filter-strip{
+  background:var(--white);border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0 20px;position:sticky;top:98px;z-index:300;
+}
+.filter-inner{max-width:1080px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.filter-inner::-webkit-scrollbar{display:none}
+.filter-tab{
+  display:flex;align-items:center;gap:7px;padding:14px 18px;
+  font-size:13px;font-weight:500;color:var(--gray);white-space:nowrap;
+  border:none;background:none;cursor:pointer;
+  border-bottom:2.5px solid transparent;transition:all .15s;
+}
+.filter-tab:hover{color:var(--green)}
+.filter-tab.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+
+/* ════════════════════════════════
+   PRODUCT GRID
+════════════════════════════════ */
+.products-section{padding:36px 20px 60px;background:var(--cream)}
+.products-inner{max-width:1080px;margin:0 auto}
+.shop-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.p-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--border);cursor:pointer;
+  transition:transform .18s,box-shadow .18s;
+}
+.p-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.p-thumb{
+  height:160px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background-size:cover;background-position:center;
+}
+.p-thumb-emoji{font-size:62px;position:relative;z-index:1}
+/* placeholder colour tints */
+.bg-green{background:#e9f5ee}.bg-yellow{background:#fff8e1}
+.bg-orange{background:#fff3e0}.bg-red{background:#fce8e8}
+.bg-purple{background:#f3eafd}.bg-blue{background:#e3f2fd}
+.p-badge{
+  position:absolute;top:9px;left:9px;z-index:2;
+  font-size:9px;font-weight:700;padding:3px 8px;border-radius:5px;text-transform:uppercase;
+}
+.b-organic{background:var(--green);color:#fff}
+.b-new{background:var(--gold);color:#fff}
+.b-popular{background:#c0392b;color:#fff}
+.p-info{padding:13px 14px}
+.p-cat{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.p-name{font-size:13px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:10px}
+.p-add-btn{
+  width:100%;padding:9px;border-radius:8px;
+  background:var(--green);color:#fff;border:none;
+  font-size:12px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:background .15s;
+}
+.p-add-btn:hover{background:var(--green-dark)}
+.p-add-btn.in-cart{background:var(--gold)}
+
+/* ════════════════════════════════
+   QTY POPUP
+════════════════════════════════ */
+.qty-popup{
+  position:fixed;z-index:900;background:var(--white);
+  border-radius:14px;box-shadow:0 16px 48px rgba(0,0,0,.18);
+  padding:20px;width:230px;
+  opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;
+  transform:scale(.93);
+}
+.qty-popup.open{opacity:1;pointer-events:all;transform:scale(1)}
+.qp-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--gray)}
+.qp-name{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:3px;padding-right:20px;line-height:1.3}
+.qp-sub{font-size:11px;color:var(--gray);margin-bottom:14px}
+.qp-units{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.qp-unit{
+  padding:5px 10px;border-radius:6px;border:1.5px solid var(--border);
+  background:var(--white);font-size:11px;font-weight:600;cursor:pointer;
+  transition:all .15s;color:var(--body);
+}
+.qp-unit.active{background:var(--green-light);border-color:var(--green);color:var(--green)}
+.qp-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.qp-label{font-size:12px;font-weight:600;color:var(--body)}
+.qp-controls{display:flex;align-items:center;gap:8px}
+.qp-minus,.qp-plus{
+  width:28px;height:28px;border-radius:7px;
+  border:1.5px solid var(--border);background:var(--white);
+  font-size:16px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;color:var(--dark);
+}
+.qp-minus:hover,.qp-plus:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.qp-num{font-size:16px;font-weight:700;min-width:22px;text-align:center}
+.qp-confirm{
+  width:100%;padding:11px;border-radius:9px;
+  background:var(--green);color:#fff;border:none;
+  font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;
+}
+.qp-confirm:hover{background:var(--green-dark)}
+
+/* ════════════════════════════════
+   FLOATING CART (Temu style)
+════════════════════════════════ */
+.floating-cart{
+  position:fixed;bottom:24px;right:20px;z-index:800;
+  display:none;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.fc-reminder{
+  background:var(--gold);color:#fff;border-radius:9px;
+  padding:8px 14px;font-size:12px;font-weight:600;
+  box-shadow:0 4px 14px rgba(0,0,0,.15);
+  animation:fcSlide .35s ease;
+}
+@keyframes fcSlide{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.fc-bubble{
+  display:flex;align-items:center;gap:10px;
+  background:var(--green);color:#fff;border:none;
+  padding:12px 18px;border-radius:50px;cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,0,0,.2);font-family:inherit;
+  transition:background .2s;
+}
+.fc-bubble:hover{background:var(--green-dark)}
+.fc-icon-wrap{position:relative;font-size:22px;line-height:1}
+.fc-badge{
+  position:absolute;top:-8px;right:-8px;
+  background:var(--gold);color:#fff;font-size:10px;font-weight:700;
+  min-width:18px;height:18px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;padding:0 3px;
+}
+.fc-text{font-size:13px;font-weight:700}
+.fc-sub{font-size:11px;opacity:.82}
+@keyframes fcPulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+.fc-bubble.pulse{animation:fcPulse .35s ease}
+
+/* ════════════════════════════════
+   CART PANEL
+════════════════════════════════ */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:850;opacity:0;pointer-events:none;transition:opacity .25s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-panel{
+  position:fixed;right:0;top:0;bottom:0;width:350px;
+  background:var(--white);z-index:860;
+  transform:translateX(110%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.cart-panel.open{transform:translateX(0)}
+.cart-hdr{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-hdr h3{font-size:16px;font-weight:700}
+.cart-x{background:none;border:none;cursor:pointer;font-size:22px;color:var(--gray);display:flex}
+.cart-body{flex:1;overflow-y:auto;padding:14px 20px}
+.cart-empty{text-align:center;padding:48px 16px;color:var(--gray)}
+.cart-empty div{font-size:44px;margin-bottom:10px}
+.c-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.c-item-img{width:46px;height:46px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.c-item-info{flex:1;min-width:0}
+.c-item-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-item-meta{font-size:11px;color:var(--gray);margin-top:2px}
+.c-item-qty{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.cq{width:24px;height:24px;border-radius:6px;background:#f0f0f0;border:none;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cq:hover{background:var(--green);color:#fff}
+.cart-ftr{padding:16px 20px;border-top:1px solid var(--border);background:#fafafa}
+.cart-wa-btn{
+  width:100%;padding:14px;border-radius:10px;
+  background:#25d366;color:#fff;border:none;
+  font-size:14px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:background .15s;
+}
+.cart-wa-btn:hover{background:#1da851}
+.cart-wa-btn svg{width:20px;height:20px;fill:#fff}
+.cart-note{font-size:11px;color:var(--gray);text-align:center;margin-top:8px}
+
+/* ════════════════════════════════
+   PRODUCT MODAL
+════════════════════════════════ */
+.p-modal{position:fixed;inset:0;z-index:870;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.p-modal.open{opacity:1;pointer-events:all}
+.p-modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+.p-modal-card{
+  position:relative;z-index:1;background:var(--white);
+  border-radius:18px;width:100%;max-width:420px;overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.2);
+}
+.p-modal-vis{height:210px;display:flex;align-items:center;justify-content:center;font-size:80px;background-size:cover;background-position:center}
+.p-modal-body{padding:22px}
+.p-modal-cat{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.p-modal-name{font-family:'Playfair Display',serif;font-size:24px;color:var(--dark);margin-bottom:8px}
+.p-modal-desc{font-size:13px;color:var(--body);line-height:1.7;margin-bottom:18px}
+.p-modal-actions{display:flex;gap:10px}
+.p-modal-add{flex:1;padding:12px;border-radius:9px;background:var(--green);color:#fff;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s}
+.p-modal-add:hover{background:var(--green-dark)}
+.p-modal-wa{display:flex;align-items:center;justify-content:center;gap:7px;flex:1;padding:12px;border-radius:9px;background:#25d366;color:#fff;border:none;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .15s}
+.p-modal-wa:hover{background:#1da851}
+.p-modal-wa svg{width:17px;height:17px;fill:#fff}
+.p-modal-x{position:absolute;top:12px;right:12px;z-index:2;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.35);border:none;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.p-modal-x:hover{background:rgba(0,0,0,.6)}
+
+/* ════════════════════════════════
+   ABOUT
+════════════════════════════════ */
+.about-section{background:var(--white);padding:56px 20px}
+.about-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.about-img{
+  border-radius:16px;height:360px;overflow:hidden;position:relative;
+  background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:90px;
+  background-size:cover;background-position:center;
+}
+.about-img-placeholder{font-size:90px}
+.about-since{position:absolute;bottom:18px;right:18px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:7px 14px;border-radius:7px}
+.about-text p{font-size:14px;color:var(--body);line-height:1.78;margin-bottom:12px}
+.about-sig{font-family:'Playfair Display',serif;font-size:19px;color:var(--green);margin-top:18px}
+
+/* ════════════════════════════════
+   CONTACT
+════════════════════════════════ */
+.contact-section{background:var(--cream);padding:56px 20px}
+.contact-inner{max-width:1080px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:32px;align-items:start;margin-top:28px}
+.contact-cards{display:flex;flex-direction:column;gap:14px}
+.c-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:16px 18px;display:flex;gap:12px;align-items:flex-start}
+.c-icon{width:38px;height:38px;border-radius:8px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dark);margin-bottom:4px}
+.c-card p,.c-card a{font-size:13px;color:var(--body);text-decoration:none;line-height:1.6}
+.c-card a:hover{color:var(--green)}
+.wa-card-big{
+  background:var(--green);border-radius:var(--radius);padding:16px 18px;
+  display:flex;align-items:center;gap:12px;text-decoration:none;transition:background .15s;
+}
+.wa-card-big:hover{background:var(--green-dark)}
+.wa-card-big svg{width:28px;height:28px;fill:#fff;flex-shrink:0}
+.wa-card-big h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:2px}
+.wa-card-big p{color:rgba(255,255,255,.75);font-size:12px}
+.map-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);height:420px}
+.map-wrap iframe{width:100%;height:100%;border:none;display:block}
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer-brand{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:10px}
+.footer-brand span{color:#f5c842}
+.footer-tagline{font-size:13px;line-height:1.7;max-width:200px;margin-bottom:16px}
+.footer-social{display:flex;gap:10px;flex-wrap:wrap}
+.footer-social a{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:16px;transition:background .15s;
+}
+.footer-social a:hover{background:rgba(255,255,255,.2);color:#fff}
+.footer-col h5{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.35);margin-bottom:12px}
+.footer-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:13px;margin-bottom:7px}
+.footer-col a:hover{color:#fff}
+.footer-col p{font-size:13px;margin-bottom:7px;line-height:1.55;color:rgba(255,255,255,.62)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px}
+.footer-bottom a{color:rgba(255,255,255,.38);text-decoration:none}
+.footer-bottom a:hover{color:#fff}
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media(max-width:900px){
+  .cat-tiles{grid-template-columns:repeat(3,1fr)}
+  .cat-tile:first-child{grid-column:span 1;grid-row:span 1}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .topbar-item:not(:first-child):not(.lang-wrap){display:none}
+  .topbar{padding:6px 14px}
+  .navbar{top:32px}
+  .filter-strip{top:94px}
+  .hero-slides{height:auto;min-height:320px}
+  .hero-slide{flex-direction:column;position:relative;height:auto}
+  .hero-slide.active{display:flex}
+  .hero-slide:not(.active){display:none}
+  .hero-slide-img{height:220px;flex:none;width:100%}
+  .hero-slide-img::after{background:linear-gradient(to bottom,transparent,rgba(14,61,32,.8))}
+  .hero-slide-content{position:relative;width:100%;background:var(--green-dark);padding:24px 20px 44px;right:auto;top:auto;bottom:auto}
+  .hero-title{font-size:26px}
+  .cat-tiles{grid-template-columns:repeat(2,1fr)}
+  .cat-tile:first-child{grid-column:span 2;grid-row:span 1}
+  .about-inner,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .about-img{height:220px}
+  .map-wrap{height:260px}
+  .product-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .cart-panel{width:100%}
+  .nav-brand{font-size:18px}
+}
+@media(max-width:480px){
+  .product-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDE MENU ══ -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <div class="side-top">
+    <div class="side-logo">Faith <span>Afro</span> Shop</div>
+    <button class="side-close" onclick="closeMenu()">&#10005;</button>
+  </div>
+  <div class="side-nav">
+    <div class="side-section" data-es="Navegar" data-en="Navigate">Navegar</div>
+    <a href="#home" onclick="closeMenu()">🏠 <span data-es="Inicio" data-en="Home">Inicio</span></a>
+    <a href="#shop" onclick="closeMenu()">🛍️ <span data-es="Tienda" data-en="Shop">Tienda</span></a>
+    <a href="#about" onclick="closeMenu()">🌍 <span data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</span></a>
+    <a href="#contact" onclick="closeMenu()">📍 <span data-es="Contacto" data-en="Contact">Contacto</span></a>
+    <div class="side-section" data-es="Categorías" data-en="Categories">Categorías</div>
+    <a href="#shop" onclick="filterAndGo('all')">✨ <span data-es="Todos" data-en="All">Todos</span></a>
+    <a href="#shop" onclick="filterAndGo('grains')">🌾 <span data-es="Granos y Harinas" data-en="Grains & Flour">Granos y Harinas</span></a>
+    <a href="#shop" onclick="filterAndGo('veg')">🥬 <span data-es="Verduras" data-en="Vegetables">Verduras</span></a>
+    <a href="#shop" onclick="filterAndGo('spices')">🌶️ <span data-es="Especias" data-en="Spices">Especias</span></a>
+    <a href="#shop" onclick="filterAndGo('drinks')">🍹 <span data-es="Bebidas" data-en="Drinks">Bebidas</span></a>
+    <a href="#shop" onclick="filterAndGo('oil')">🫙 <span data-es="Aceites y Salsas" data-en="Oils & Sauces">Aceites y Salsas</span></a>
+    <a href="#shop" onclick="filterAndGo('snacks')">🍿 <span data-es="Snacks" data-en="Snacks">Snacks</span></a>
+    <a href="#shop" onclick="filterAndGo('frozen')">❄️ <span data-es="Congelados" data-en="Frozen">Congelados</span></a>
+  </div>
+  <div class="side-bottom">
+    <a href="https://wa.me/34604884389" target="_blank" class="side-wa">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar" id="home">
+  <div class="topbar-left">
+    <span class="topbar-item">📍 Bailén Nº13, Bilbao 48003</span>
+    <span class="topbar-item">🕐 <span data-es="Lun–Vie 10:00–20:00" data-en="Mon–Fri 10:00–20:00">Lun–Vie 10:00–20:00</span></span>
+    <span class="topbar-item"><a href="tel:+34632408353">📞 632 408 353</a></span>
+  </div>
+  <div class="topbar-right">
+    <span class="topbar-item"><a href="mailto:faithobimma101@gmail.com" style="display:none" class="topbar-email">✉️ faithobimma101@gmail.com</a></span>
+    <span class="lang-wrap">
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btnEs" onclick="setLang('es')" title="Español">
+          <svg viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg">
+            <rect width="22" height="15" fill="#c60b1e"/>
+            <rect y="3.75" width="22" height="7.5" fill="#ffc400"/>
+          </svg>
+          <span>ES</span>
+        </button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')" title="English">
+          <svg viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg">
+            <rect width="22" height="15" fill="#012169"/>
+            <path d="M0,0 L22,15 M22,0 L0,15" stroke="#fff" stroke-width="3"/>
+            <path d="M0,0 L22,15 M22,0 L0,15" stroke="#C8102E" stroke-width="1.8"/>
+            <path d="M11,0 V15 M0,7.5 H22" stroke="#fff" stroke-width="5"/>
+            <path d="M11,0 V15 M0,7.5 H22" stroke="#C8102E" stroke-width="3"/>
+          </svg>
+          <span>EN</span>
+        </button>
+      </div>
+    </span>
+  </div>
+</div>
+
+<!-- ══ NAVBAR ══ -->
+<header class="navbar">
+  <button class="burger-btn" onclick="openMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-brand">Faith <span>Afro</span> Shop</div>
+  <div class="nav-right">
+    <a href="https://wa.me/34604884389" target="_blank" class="wa-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-controls" id="heroControls">
+    <button class="hero-arrow" onclick="prevHero()">&#8592;</button>
+    <div id="heroDots"></div>
+    <button class="hero-arrow" onclick="nextHero()">&#8594;</button>
+  </div>
+</section>
+
+<!-- ══ CATEGORY TILES ══ -->
+<section class="cats-section">
+  <div class="cats-inner">
+    <div class="section-label" data-es="Explorar" data-en="Explore">Explorar</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title" data-es="¿Qué estás buscando?" data-en="What are you looking for?">¿Qué estás buscando?</h2>
+    <div class="cat-tiles" id="catTiles"></div>
+  </div>
+</section>
+
+<!-- ══ PRODUCT FILTER STRIP ══ -->
+<div class="filter-strip" id="shop">
+  <div class="filter-inner" id="filterTabs"></div>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="products-section">
+  <div class="products-inner">
+    <div class="shop-hdr">
+      <div>
+        <div class="section-label" data-es="Nuestros Productos" data-en="Our Products">Nuestros Productos</div>
+        <div class="section-divider"></div>
+        <h2 class="section-title" id="shopTitle" style="margin-bottom:0">Todos</h2>
+      </div>
+      <span style="font-size:13px;color:var(--gray)" id="shopCount"></span>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-img">
+      <!-- replace with: <img src="images/shop.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"> -->
+      <span class="about-img-placeholder">🌍</span>
+      <div class="about-since">Since 2010</div>
+    </div>
+    <div class="about-text">
+      <div class="section-label" data-es="Nuestra Historia" data-en="Our Story">Nuestra Historia</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title" data-es="África en el corazón de Bilbao" data-en="Africa in the heart of Bilbao">África en el corazón de Bilbao</h2>
+      <p data-es="Faith Afro Shop nació de un deseo sencillo: traer los auténticos sabores, aromas e ingredientes de África y el trópico al corazón de Bilbao." data-en="Faith Afro Shop was born from a simple desire — to bring the authentic tastes, aromas and ingredients of Africa and the tropics to the heart of Bilbao.">Faith Afro Shop nació de un deseo sencillo: traer los auténticos sabores, aromas e ingredientes de África y el trópico al corazón de Bilbao.</p>
+      <p data-es="Desde 2010, servimos a nuestra comunidad con productos cuidadosamente seleccionados: desde básicos del África Occidental como el garri, el aceite de palma y los cangrejos secos, hasta bebidas caribeñas y especialidades tropicales." data-en="Since 2010, we have been serving our community with carefully selected products — from West African staples like garri, palm oil and crayfish, to Caribbean beverages and tropical specialties.">Desde 2010, servimos a nuestra comunidad con productos cuidadosamente seleccionados: desde básicos del África Occidental como el garri, el aceite de palma y los cangrejos secos, hasta bebidas caribeñas y especialidades tropicales.</p>
+      <p data-es="Cada producto es elegido por su calidad, autenticidad y frescura. Cuando compras aquí, saboreas lo auténtico." data-en="Every product is chosen for its quality, authenticity and freshness. When you shop here, you taste the real thing.">Cada producto es elegido por su calidad, autenticidad y frescura. Cuando compras aquí, saboreas lo auténtico.</p>
+      <div class="about-sig">— Faith, Fundadora</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label" data-es="Visítanos" data-en="Visit Us">Visítanos</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title" data-es="Contacto y Ubicación" data-en="Contact & Location">Contacto y Ubicación</h2>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="c-card">
+          <div class="c-icon">📍</div>
+          <div><h4 data-es="Dirección" data-en="Address">Dirección</h4><p>Bailén Nº13, Bilbao 48003<br>País Vasco, España</p></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon">🕐</div>
+          <div><h4 data-es="Horario" data-en="Hours">Horario</h4><p data-es="Lunes – Viernes: 10:00 – 20:00<br>Sábado y Domingo: Cerrado" data-en="Monday – Friday: 10:00 – 20:00<br>Saturday & Sunday: Closed">Lunes – Viernes: 10:00 – 20:00<br>Sábado y Domingo: Cerrado</p></div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon">📞</div>
+          <div><h4 data-es="Teléfono" data-en="Phone">Teléfono</h4>
+            <p><a href="tel:+34632408353">632 408 353</a><br><a href="tel:+34944241764" style="font-size:12px;color:var(--gray)">944 241 764</a></p>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon">✉️</div>
+          <div><h4>Email</h4><p><a href="mailto:faithobimma101@gmail.com">faithobimma101@gmail.com</a></p></div>
+        </div>
+        <a href="https://wa.me/34604884389" target="_blank" class="wa-card-big">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <div><h4 data-es="Escríbenos por WhatsApp" data-en="Chat on WhatsApp">Escríbenos por WhatsApp</h4><p>+34 604 88 43 89</p></div>
+        </a>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://maps.google.com/maps?q=Bail%C3%A9n+13+Bilbao+48003&t=m&z=16&output=embed&iwloc=near" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Faith <span>Afro</span> Shop</div>
+        <p class="footer-tagline" data-es="Productos africanos y tropicales auténticos en Bilbao desde 2010." data-en="Authentic African & tropical goods in Bilbao since 2010.">Productos africanos y tropicales auténticos en Bilbao desde 2010.</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="Instagram">📸</a>
+          <a href="https://wa.me/34604884389" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5 data-es="Navegación" data-en="Navigation">Navegación</h5>
+        <a href="#home" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="#shop" data-es="Tienda" data-en="Shop">Tienda</a>
+        <a href="#about" data-es="Nosotros" data-en="About">Nosotros</a>
+        <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-es="Categorías" data-en="Categories">Categorías</h5>
+        <a href="#shop" onclick="filterAndGo('grains')" data-es="Granos y Harinas" data-en="Grains & Flour">Granos y Harinas</a>
+        <a href="#shop" onclick="filterAndGo('veg')" data-es="Verduras" data-en="Vegetables">Verduras</a>
+        <a href="#shop" onclick="filterAndGo('spices')" data-es="Especias" data-en="Spices">Especias</a>
+        <a href="#shop" onclick="filterAndGo('drinks')" data-es="Bebidas" data-en="Drinks">Bebidas</a>
+        <a href="#shop" onclick="filterAndGo('snacks')" data-es="Snacks" data-en="Snacks">Snacks</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-es="Contacto" data-en="Contact">Contacto</h5>
+        <p>📍 Bailén Nº13, Bilbao 48003</p>
+        <p>📞 <a href="tel:+34632408353">632 408 353</a></p>
+        <p>✉️ <a href="mailto:faithobimma101@gmail.com">Email</a></p>
+        <p>🕐 <span data-es="Lun–Vie 10:00–20:00" data-en="Mon–Fri 10:00–20:00">Lun–Vie 10:00–20:00</span></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Faith Afro Shop. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></span>
+      <a href="#" data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOATING CART ══ -->
+<div class="floating-cart" id="floatingCart">
+  <div class="fc-reminder" id="fcReminder" style="display:none" data-es="¡Tienes artículos en tu cesta!" data-en="You have items in your basket!">¡Tienes artículos en tu cesta!</div>
+  <button class="fc-bubble" id="fcBubble" onclick="openCartPanel()">
+    <div class="fc-icon-wrap">🛒<span class="fc-badge" id="fcBadge">0</span></div>
+    <div>
+      <div class="fc-text" data-es="Mi Cesta" data-en="My Basket">Mi Cesta</div>
+      <div class="fc-sub" id="fcSub"></div>
+    </div>
+  </button>
+</div>
+
+<!-- ══ CART PANEL ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartPanel()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-hdr">
+    <h3 data-es="Mi Cesta" data-en="My Basket">Mi Cesta</h3>
+    <button class="cart-x" onclick="closeCartPanel()">&#10005;</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-ftr" id="cartFtr" style="display:none">
+    <button class="cart-wa-btn" onclick="sendCartWA()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span data-es="Enviar pedido por WhatsApp" data-en="Send order via WhatsApp">Enviar pedido por WhatsApp</span>
+    </button>
+    <p class="cart-note" data-es="Te confirmamos disponibilidad por WhatsApp" data-en="We'll confirm availability via WhatsApp">Te confirmamos disponibilidad por WhatsApp</p>
+  </div>
+</div>
+
+<!-- ══ QTY POPUP ══ -->
+<div class="qty-popup" id="qtyPopup">
+  <button class="qp-close" onclick="closeQtyPopup()">&#10005;</button>
+  <div class="qp-name" id="qpName"></div>
+  <div class="qp-sub" data-es="Selecciona cantidad y unidad" data-en="Select quantity and unit">Selecciona cantidad y unidad</div>
+  <div class="qp-units" id="qpUnits"></div>
+  <div class="qp-row">
+    <span class="qp-label" data-es="Cantidad:" data-en="Qty:">Cantidad:</span>
+    <div class="qp-controls">
+      <button class="qp-minus" onclick="changeQty(-1)">&#8722;</button>
+      <span class="qp-num" id="qpNum">1</span>
+      <button class="qp-plus" onclick="changeQty(1)">&#43;</button>
+    </div>
+  </div>
+  <button class="qp-confirm" onclick="confirmAdd()" data-es="Añadir a la cesta" data-en="Add to basket">Añadir a la cesta</button>
+</div>
+
+<!-- ══ PRODUCT MODAL ══ -->
+<div class="p-modal" id="pModal">
+  <div class="p-modal-bg" onclick="closeModal()"></div>
+  <div class="p-modal-card">
+    <button class="p-modal-x" onclick="closeModal()">&#10005;</button>
+    <div class="p-modal-vis" id="pModalVis"></div>
+    <div class="p-modal-body">
+      <div class="p-modal-cat" id="pModalCat"></div>
+      <div class="p-modal-name" id="pModalName"></div>
+      <div class="p-modal-desc" id="pModalDesc"></div>
+      <div class="p-modal-actions">
+        <button class="p-modal-add" onclick="openQtyFromModal()" data-es="Añadir a la cesta" data-en="Add to basket">Añadir a la cesta</button>
+        <a class="p-modal-wa" id="pModalWA" href="#" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════ DATA ══════════ */
+var WA = '34604884389';
+var lang = 'es';
+var currentSlide = 0;
+var slideTimer = null;
+var activeCat = 'all';
+var cart = {};
+var qtyProduct = null;
+var qtyVal = 1;
+var qtyUnit = '';
+var modalProduct = null;
+
+var CATS = [
+  {id:'all',   es:'Todos',          en:'All',          icon:'✨', color:'ct-green',  emoji:'🌍', count:'24'},
+  {id:'grains',es:'Granos y Harinas',en:'Grains & Flour',icon:'🌾',color:'ct-yellow', emoji:'🌾', count:'4'},
+  {id:'veg',   es:'Verduras',       en:'Vegetables',   icon:'🥬', color:'ct-green',  emoji:'🥬', count:'5'},
+  {id:'spices',es:'Especias',       en:'Spices',       icon:'🌶️',color:'ct-red',    emoji:'🌶️',count:'4'},
+  {id:'drinks',es:'Bebidas',        en:'Drinks',       icon:'🍹', color:'ct-blue',   emoji:'🍹', count:'4'},
+  {id:'oil',   es:'Aceites y Salsas',en:'Oils & Sauces',icon:'🫙',color:'ct-orange', emoji:'🫙', count:'3'},
+  {id:'snacks',es:'Snacks',         en:'Snacks',       icon:'🍿', color:'ct-brown',  emoji:'🍿', count:'3'},
+  {id:'frozen',es:'Congelados',     en:'Frozen',       icon:'❄️', color:'ct-teal',   emoji:'❄️', count:'1'},
+];
+
+var PRODUCTS = [
+  {id:1, name:{es:'Garri (Ijebu)',en:'Garri (Ijebu)'}, desc:{es:'Hojuelas de yuca fermentada, perfectas para eba o para tomar frías con cacahuetes.',en:'Fine fermented cassava flakes, perfect for eba or drinking cold with groundnuts.'}, emoji:'🌾',cat:'grains',bg:'bg-yellow',badge:'popular'},
+  {id:2, name:{es:'Harina de Sémola',en:'Semolina Flour'}, desc:{es:'Sémola de trigo fina, ideal para hacer swallow suave y elástico.',en:'Fine wheat semolina, ideal for making smooth stretchy swallow.'}, emoji:'🫙',cat:'grains',bg:'bg-green',badge:null},
+  {id:3, name:{es:'Harina de Ñame (Elubo)',en:'Yam Flour (Elubo)'}, desc:{es:'Harina de ñame seco premium para ñame machacado auténtico.',en:'Premium dried yam flour for authentic pounded yam.'}, emoji:'🌿',cat:'grains',bg:'bg-yellow',badge:null},
+  {id:4, name:{es:'Frijoles Carilla',en:'Black-Eye Beans'}, desc:{es:'Frijoles carilla secos, esenciales para moi moi y akara.',en:'Dried black-eyed peas, essential for moi moi and akara.'}, emoji:'🫘',cat:'grains',bg:'bg-orange',badge:'organic'},
+  {id:5, name:{es:'Plátano Verde',en:'Green Plantain'}, desc:{es:'Plátano macho firme para freír, hervir o hacer chips.',en:'Firm unripe plantain for frying, boiling or making chips.'}, emoji:'🍌',cat:'veg',bg:'bg-yellow',badge:'organic'},
+  {id:6, name:{es:'Plátano Maduro',en:'Ripe Plantain'}, desc:{es:'Plátano amarillo dulce y suave, perfecto para dodo.',en:'Sweet soft yellow plantain, perfect for dodo.'}, emoji:'🍌',cat:'veg',bg:'bg-orange',badge:'organic'},
+  {id:7, name:{es:'Okra Fresca',en:'Fresh Okra'}, desc:{es:'Vainas de okra tiernas para sopas y guisos.',en:'Tender okra pods for soups and stews.'}, emoji:'🥒',cat:'veg',bg:'bg-green',badge:'organic'},
+  {id:8, name:{es:'Berenjena Africana',en:'African Eggplant'}, desc:{es:'Huevos de jardín redondos, sabor suave y ligeramente amargo.',en:'Round garden eggs with a mild, slightly bitter flavour.'}, emoji:'🍆',cat:'veg',bg:'bg-purple',badge:'new'},
+  {id:9, name:{es:'Hoja Amarga Seca',en:'Dried Bitter Leaf'}, desc:{es:'Vernonia amygdalina seca para sopas tradicionales.',en:'Dried Vernonia amygdalina for traditional soups.'}, emoji:'🍃',cat:'veg',bg:'bg-green',badge:null},
+  {id:10,name:{es:'Camarón Seco Molido',en:'Ground Crayfish'}, desc:{es:'Camarones ahumados y molidos — la base de la cocina de África Occidental.',en:'Smoked ground dried shrimp — the backbone of West African cooking.'}, emoji:'🦐',cat:'spices',bg:'bg-orange',badge:'popular'},
+  {id:11,name:{es:'Iru (Algarrobo)',en:'Iru (Locust Bean)'}, desc:{es:'Frijoles de algarrobo fermentados, con profundo sabor umami.',en:'Fermented locust beans with a deep earthy umami flavour.'}, emoji:'🫘',cat:'spices',bg:'bg-yellow',badge:null},
+  {id:12,name:{es:'Mezcla de Especias Suya',en:'Suya Spice Mix'}, desc:{es:'Auténtica mezcla Hausa de cacahuete, jengibre y pimentón.',en:'Authentic Hausa blend of groundnut, ginger and paprika.'}, emoji:'🌶️',cat:'spices',bg:'bg-red',badge:'new'},
+  {id:13,name:{es:'Hojas de Uziza',en:'Uziza Leaves'}, desc:{es:'Hoja de pimienta africana seca para sopas y caldo.',en:'Dried African pepper leaf for soups and pepper soup.'}, emoji:'🌿',cat:'spices',bg:'bg-green',badge:null},
+  {id:14,name:{es:'Malta Guinness',en:'Malta Guinness'}, desc:{es:'Clásica bebida de malta sin alcohol, rica y nutritiva.',en:'Classic non-alcoholic malt drink, rich and nourishing.'}, emoji:'🍺',cat:'drinks',bg:'bg-yellow',badge:'popular'},
+  {id:15,name:{es:'Concentrado de Zobo',en:'Zobo Concentrate'}, desc:{es:'Rosa de Jamaica — dulce, ácida y muy refrescante.',en:'Hibiscus roselle concentrate — sweet, tangy and refreshing.'}, emoji:'🫖',cat:'drinks',bg:'bg-red',badge:'organic'},
+  {id:16,name:{es:'Mezcla Chapman',en:'Chapman Mix'}, desc:{es:'Base del cóctel nigeriano — afrutado y festivo.',en:'Nigerian cocktail base — fruity, bubbly and festive.'}, emoji:'🍹',cat:'drinks',bg:'bg-orange',badge:'new'},
+  {id:17,name:{es:'Bebida Piña y Jengibre',en:'Pineapple Ginger Drink'}, desc:{es:'Piña y jengibre tropical fermentados, naturalmente probiótico.',en:'Fermented tropical pineapple and ginger, naturally probiotic.'}, emoji:'🍍',cat:'drinks',bg:'bg-yellow',badge:'organic'},
+  {id:18,name:{es:'Aceite de Palma Rojo',en:'Red Palm Oil'}, desc:{es:'Aceite de palma puro sin refinar — el alma de la cocina africana.',en:'Pure unrefined red palm oil — the soul of West African cooking.'}, emoji:'🫙',cat:'oil',bg:'bg-orange',badge:'popular'},
+  {id:19,name:{es:'Aceite de Coco Virgen',en:'Virgin Coconut Oil'}, desc:{es:'Prensado en frío, sin refinar. Ideal para cocinar y cuidado de la piel.',en:'Cold-pressed, unrefined. Great for cooking and skin care.'}, emoji:'🥥',cat:'oil',bg:'bg-green',badge:'organic'},
+  {id:20,name:{es:'Salsa Shito',en:'Shito Sauce'}, desc:{es:'Salsa de pimienta ghanesa con pescado ahumado y chiles.',en:'Ghanaian black pepper sauce with smoked fish and chillies.'}, emoji:'🌶️',cat:'oil',bg:'bg-red',badge:null},
+  {id:21,name:{es:'Chin Chin',en:'Chin Chin'}, desc:{es:'Crujiente pastelería frita dulce. Un clásico nigeriano.',en:'Crunchy sweet deep-fried pastry. A Nigerian classic.'}, emoji:'🥨',cat:'snacks',bg:'bg-yellow',badge:'popular'},
+  {id:22,name:{es:'Chips de Plátano',en:'Plantain Chips'}, desc:{es:'Chips de plátano crujientes, ligeramente salados o especiados.',en:'Crispy plantain chips, lightly salted or spiced.'}, emoji:'🍟',cat:'snacks',bg:'bg-orange',badge:null},
+  {id:23,name:{es:'Mezcla Puff Puff',en:'Puff Puff Mix'}, desc:{es:'Mezcla para buñuelos nigerianos — solo añade agua y fríe.',en:'Nigerian fritter mix — just add water, fry and enjoy.'}, emoji:'🍩',cat:'snacks',bg:'bg-yellow',badge:'new'},
+  {id:24,name:{es:'Fufu Congelado',en:'Frozen Fufu'}, desc:{es:'Fufu de yuca listo para cocinar. Textura auténtica, sin complicaciones.',en:'Ready-to-cook cassava fufu. Authentic texture, zero hassle.'}, emoji:'⚪',cat:'frozen',bg:'bg-blue',badge:null},
+];
+
+var FEATURED = [1,5,10,18,14,21];
+
+/* ══════════ LANGUAGE ══════════ */
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.getElementById('btnEs').className = 'lang-btn' + (l==='es' ? ' active' : '');
+  document.getElementById('btnEn').className = 'lang-btn' + (l==='en' ? ' active' : '');
+  document.querySelectorAll('[data-es]').forEach(function(el) {
+    var val = el.getAttribute('data-' + l);
+    if (val) el.innerHTML = val;
+  });
+  renderFilterTabs();
+  renderProducts(activeCat);
+  updateCartUI();
+}
+
+/* ══════════ HERO SLIDESHOW ══════════ */
+function buildHero() {
+  var container = document.getElementById('heroSlides');
+  var dotsEl = document.getElementById('heroDots');
+  var featured = FEATURED.map(function(id) { return PRODUCTS.find(function(p) { return p.id === id; }); });
+
+  featured.forEach(function(p, i) {
+    var slide = document.createElement('div');
+    slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+
+    // image side — placeholder div with emoji, ready for real image
+    var imgDiv = document.createElement('div');
+    imgDiv.className = 'hero-slide-img ' + p.bg;
+    imgDiv.setAttribute('data-img', 'images/' + p.id + '.jpg'); // path for when real photo arrives
+    imgDiv.innerHTML = '<span style="font-size:120px;position:relative;z-index:1">' + p.emoji + '</span>';
+
+    // content overlay
+    var cnt = document.createElement('div');
+    cnt.className = 'hero-slide-content';
+    cnt.innerHTML =
+      '<div class="hero-eyebrow">' + p.cat.toUpperCase() + '</div>' +
+      '<div class="hero-title">' + p.name[lang] + '</div>' +
+      '<div class="hero-desc">' + p.desc[lang] + '</div>' +
+      '<button class="hero-cta" onclick="openQtyPopup(' + p.id + ',event)">' +
+        (lang === 'es' ? 'A\u00F1adir a la cesta \u2192' : 'Add to basket \u2192') +
+      '</button>';
+
+    slide.appendChild(imgDiv);
+    slide.appendChild(cnt);
+    container.appendChild(slide);
+
+    var dot = document.createElement('button');
+    dot.className = 'h-dot' + (i === 0 ? ' active' : '');
+    (function(idx) { dot.addEventListener('click', function() { goToSlide(idx); }); })(i);
+    dotsEl.appendChild(dot);
+  });
+  startSlideTimer();
+}
+
+function goToSlide(n) {
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots = document.querySelectorAll('.h-dot');
+  if (!slides.length) return;
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+function nextHero() { goToSlide(currentSlide + 1); resetSlideTimer(); }
+function prevHero() { goToSlide(currentSlide - 1); resetSlideTimer(); }
+function startSlideTimer() { slideTimer = setInterval(function() { goToSlide(currentSlide + 1); }, 4800); }
+function resetSlideTimer() { clearInterval(slideTimer); startSlideTimer(); }
+
+/* ══════════ CATEGORY TILES ══════════ */
+function buildCatTiles() {
+  var el = document.getElementById('catTiles');
+  // skip 'all' for tiles
+  var tiles = CATS.filter(function(c) { return c.id !== 'all'; });
+  el.innerHTML = tiles.map(function(c, i) {
+    var big = i === 0; // first tile spans 2x2
+    return '<div class="cat-tile' + (big ? ' cat-tile-big' : '') + '" onclick="filterAndGo(\'' + c.id + '\')">' +
+      '<div class="cat-tile-bg ' + c.color + '">' + c.emoji + '</div>' +
+      '<div class="cat-tile-overlay"></div>' +
+      '<div class="cat-tile-label">' +
+        '<h3>' + c[lang] + '</h3>' +
+        '<span>' + c.count + (lang === 'es' ? ' productos' : ' products') + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ══════════ FILTER TABS ══════════ */
+function renderFilterTabs() {
+  var el = document.getElementById('filterTabs');
+  el.innerHTML = CATS.map(function(c) {
+    return '<button class="filter-tab' + (activeCat === c.id ? ' active' : '') + '" onclick="filterCat(\'' + c.id + '\',this)">' +
+      c.icon + ' ' + c[lang] +
+    '</button>';
+  }).join('');
+}
+
+function filterCat(cat, btn) {
+  activeCat = cat;
+  renderFilterTabs();
+  renderProducts(cat);
+}
+
+function filterAndGo(cat) {
+  activeCat = cat;
+  renderFilterTabs();
+  renderProducts(cat);
+  closeMenu();
+  setTimeout(function() { document.getElementById('shop').scrollIntoView({behavior:'smooth'}); }, 80);
+}
+
+/* ══════════ PRODUCTS ══════════ */
+function renderProducts(cat) {
+  var items = cat === 'all' ? PRODUCTS : PRODUCTS.filter(function(p) { return p.cat === cat; });
+  var catObj = CATS.find(function(c) { return c.id === cat; });
+  document.getElementById('shopTitle').textContent = catObj ? catObj[lang] : '';
+  document.getElementById('shopCount').textContent = items.length + (lang === 'es' ? ' artículos' : ' items');
+
+  document.getElementById('productGrid').innerHTML = items.map(function(p) {
+    var inCart = cart[p.id];
+    var badgeHtml = '';
+    if (p.badge === 'organic') badgeHtml = '<span class="p-badge b-organic">' + (lang==='es'?'Orgánico':'Organic') + '</span>';
+    if (p.badge === 'new') badgeHtml = '<span class="p-badge b-new">' + (lang==='es'?'Nuevo':'New') + '</span>';
+    if (p.badge === 'popular') badgeHtml = '<span class="p-badge b-popular">' + (lang==='es'?'Popular':'Popular') + '</span>';
+    var btnTxt = inCart
+      ? '\u2713 ' + (lang==='es' ? 'En la cesta' : 'In basket')
+      : '+ ' + (lang==='es' ? 'Añadir' : 'Add');
+    return '<div class="p-card" onclick="openModal(' + p.id + ')">' +
+      '<div class="p-thumb ' + p.bg + '" data-img="images/' + p.id + '.jpg">' +
+        '<span class="p-thumb-emoji">' + p.emoji + '</span>' +
+        badgeHtml +
+      '</div>' +
+      '<div class="p-info">' +
+        '<div class="p-cat">' + p.cat + '</div>' +
+        '<div class="p-name">' + p.name[lang] + '</div>' +
+        '<button class="p-add-btn' + (inCart?' in-cart':'') + '" onclick="event.stopPropagation();openQtyPopup(' + p.id + ',event)">' + btnTxt + '</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ══════════ QTY POPUP ══════════ */
+function openQtyPopup(id, e) {
+  if (e) e.stopPropagation();
+  closeModal();
+  qtyProduct = PRODUCTS.find(function(p) { return p.id === id; });
+  qtyVal = 1;
+  var units = lang === 'es' ? ['unidad','kg','g','litro','paquete'] : ['unit','kg','g','litre','pack'];
+  qtyUnit = units[0];
+  document.getElementById('qpName').textContent = qtyProduct.name[lang];
+  document.getElementById('qpNum').textContent = 1;
+  document.getElementById('qpUnits').innerHTML = units.map(function(u) {
+    return '<button class="qp-unit' + (u === qtyUnit ? ' active' : '') + '" onclick="selectUnit(\'' + u + '\',this)">' + u + '</button>';
+  }).join('');
+
+  var popup = document.getElementById('qtyPopup');
+  if (e && e.target) {
+    var r = e.target.getBoundingClientRect();
+    var top = Math.min(r.top - 10, window.innerHeight - 300);
+    var left = Math.max(r.left - 100, 10);
+    popup.style.cssText = 'top:' + Math.max(top,60) + 'px;left:' + Math.min(left, window.innerWidth - 245) + 'px;transform:scale(1)';
+  } else {
+    popup.style.cssText = 'top:50%;left:50%;transform:translate(-50%,-50%) scale(1)';
+  }
+  popup.classList.add('open');
+}
+
+function openQtyFromModal() {
+  if (!modalProduct) return;
+  var id = modalProduct.id;
+  closeModal();
+  openQtyPopup(id, null);
+}
+
+function selectUnit(u, btn) {
+  qtyUnit = u;
+  document.querySelectorAll('.qp-unit').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function changeQty(delta) {
+  qtyVal = Math.max(1, qtyVal + delta);
+  document.getElementById('qpNum').textContent = qtyVal;
+}
+
+function confirmAdd() {
+  if (!qtyProduct) return;
+  var id = qtyProduct.id;
+  if (!cart[id]) cart[id] = {product: qtyProduct, qty: qtyVal, unit: qtyUnit};
+  else cart[id].qty += qtyVal;
+  closeQtyPopup();
+  updateCartUI();
+  renderProducts(activeCat);
+  showFloatingCart();
+  pulseBubble();
+}
+
+function closeQtyPopup() {
+  document.getElementById('qtyPopup').classList.remove('open');
+}
+
+/* ══════════ CART ══════════ */
+function showFloatingCart() {
+  var fc = document.getElementById('floatingCart');
+  fc.style.display = 'flex';
+  var rem = document.getElementById('fcReminder');
+  rem.style.display = 'block';
+  rem.textContent = lang === 'es' ? '¡Artículo añadido a la cesta!' : 'Item added to basket!';
+  clearTimeout(rem._t);
+  rem._t = setTimeout(function() { rem.style.display = 'none'; }, 3500);
+}
+
+function pulseBubble() {
+  var b = document.getElementById('fcBubble');
+  b.classList.remove('pulse');
+  void b.offsetWidth;
+  b.classList.add('pulse');
+}
+
+function updateCartUI() {
+  var keys = Object.keys(cart);
+  var total = keys.reduce(function(a, k) { return a + cart[k].qty; }, 0);
+  document.getElementById('fcBadge').textContent = total;
+  document.getElementById('fcSub').textContent = total + (lang==='es' ? ' artículo(s)' : ' item(s)');
+
+  if (keys.length === 0) {
+    document.getElementById('floatingCart').style.display = 'none';
+    document.getElementById('cartBody').innerHTML =
+      '<div class="cart-empty"><div>🛒</div><p>' + (lang==='es'?'Tu cesta está vacía':'Your basket is empty') + '</p></div>';
+    document.getElementById('cartFtr').style.display = 'none';
+  } else {
+    document.getElementById('cartBody').innerHTML = keys.map(function(k) {
+      var i = cart[k];
+      return '<div class="c-item">' +
+        '<div class="c-item-img ' + i.product.bg + '">' + i.product.emoji + '</div>' +
+        '<div class="c-item-info">' +
+          '<div class="c-item-name">' + i.product.name[lang] + '</div>' +
+          '<div class="c-item-meta">' + i.qty + ' ' + i.unit + '</div>' +
+        '</div>' +
+        '<div class="c-item-qty">' +
+          '<button class="cq" onclick="cartQty(' + k + ',-1)">&#8722;</button>' +
+          '<span style="font-size:13px;font-weight:700;min-width:18px;text-align:center">' + i.qty + '</span>' +
+          '<button class="cq" onclick="cartQty(' + k + ',1)">&#43;</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    document.getElementById('cartFtr').style.display = 'block';
+  }
+}
+
+function cartQty(id, delta) {
+  if (!cart[id]) return;
+  cart[id].qty += delta;
+  if (cart[id].qty <= 0) delete cart[id];
+  updateCartUI();
+  renderProducts(activeCat);
+  if (Object.keys(cart).length === 0) document.getElementById('floatingCart').style.display = 'none';
+}
+
+function openCartPanel() {
+  document.getElementById('cartPanel').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartPanel() {
+  document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function sendCartWA() {
+  var keys = Object.keys(cart);
+  if (!keys.length) return;
+  var lines = keys.map(function(k) {
+    return '\u2022 ' + cart[k].product.name[lang] + ': ' + cart[k].qty + ' ' + cart[k].unit;
+  }).join('\n');
+  var msg = lang === 'es'
+    ? 'Hola Faith Afro Shop! Me gustar\u00EDa pedir:\n\n' + lines + '\n\n\u00BFPueden confirmar disponibilidad?'
+    : 'Hi Faith Afro Shop! I\'d like to order:\n\n' + lines + '\n\nCan you confirm availability?';
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+/* ══════════ MODAL ══════════ */
+function openModal(id) {
+  var p = PRODUCTS.find(function(x) { return x.id === id; });
+  modalProduct = p;
+  var msg = lang === 'es'
+    ? 'Hola! Me interesa: *' + p.name.es + '*. \u00BFMe pueden dar m\u00E1s informaci\u00F3n?'
+    : 'Hi! I\'m interested in: *' + p.name.en + '*. Can you tell me more?';
+  document.getElementById('pModalVis').innerHTML = '<span class="' + p.bg + '" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px">' + p.emoji + '</span>';
+  document.getElementById('pModalCat').textContent = p.cat;
+  document.getElementById('pModalName').textContent = p.name[lang];
+  document.getElementById('pModalDesc').textContent = p.desc[lang];
+  document.getElementById('pModalWA').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+  document.getElementById('pModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('pModal').classList.remove('open');
+  document.body.style.overflow = '';
+  modalProduct = null;
+}
+
+/* ══════════ MENU ══════════ */
+function openMenu() {
+  document.getElementById('sideMenu').classList.add('open');
+  document.getElementById('menuOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  document.getElementById('sideMenu').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ══════════ INIT ══════════ */
+buildHero();
+buildCatTiles();
+renderFilterTabs();
+renderProducts('all');
+updateCartUI();
+</script>
+</body>
+</html>
