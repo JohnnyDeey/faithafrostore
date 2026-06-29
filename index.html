@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faith Afro Shop — Productos Africanos y Tropicales, Bilbao</title>
 <meta name="description" content="Productos africanos y tropicales auténticos en Bilbao. Visítanos en Bailén Nº13, Bilbao.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231b5e35'/><text y='.9em' font-size='70' x='12'>🌍</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -111,49 +112,42 @@ body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--body);ov
 .side-wa svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
 
 /* ════════════════════════════════
-   HERO — full-width banner
+   HERO — full-width image slideshow
 ════════════════════════════════ */
 .hero{position:relative;width:100%;overflow:hidden;background:var(--green-dark)}
 .hero-slides{position:relative;width:100%;height:480px}
 .hero-slide{
   position:absolute;inset:0;opacity:0;transition:opacity .75s ease;
-  display:flex;align-items:stretch;
+  background-size:cover;background-position:center;
 }
 .hero-slide.active{opacity:1;z-index:1}
-/* image side */
-.hero-slide-img{
-  flex:1;background-size:cover;background-position:center;
-  display:flex;align-items:center;justify-content:center;
-  font-size:120px;
-  position:relative;
-}
-.hero-slide-img::after{
+.hero-slide::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(to right,rgba(14,61,32,.1),rgba(14,61,32,.7));
+  background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.2) 50%, rgba(0,0,0,.1) 100%);
 }
-/* content overlaid on right side */
+/* text overlaid bottom-left */
+.hero-slide-img{display:none}
 .hero-slide-content{
-  position:absolute;right:0;top:0;bottom:0;width:46%;
-  background:linear-gradient(to right,transparent,var(--green-dark) 30%);
-  display:flex;flex-direction:column;justify-content:center;
-  padding:48px 48px 48px 80px;z-index:2;
+  position:absolute;bottom:0;left:0;right:0;
+  padding:40px 48px 60px;z-index:2;
+  max-width:600px;
 }
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f5c842;margin-bottom:12px}
-.hero-title{font-family:'Playfair Display',serif;font-size:38px;color:#fff;line-height:1.15;margin-bottom:12px}
-.hero-desc{color:rgba(255,255,255,.75);font-size:14px;line-height:1.65;margin-bottom:24px;max-width:280px}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#f5c842;margin-bottom:10px}
+.hero-title{font-family:'Playfair Display',serif;font-size:40px;color:#fff;line-height:1.15;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.hero-desc{color:rgba(255,255,255,.88);font-size:15px;line-height:1.65;margin-bottom:22px;max-width:480px;text-shadow:0 1px 4px rgba(0,0,0,.3)}
 .hero-cta{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--gold);color:#fff;border:none;
-  padding:12px 22px;border-radius:9px;font-size:14px;font-weight:700;
+  padding:12px 24px;border-radius:9px;font-size:14px;font-weight:700;
   cursor:pointer;transition:background .15s;width:fit-content;
 }
 .hero-cta:hover{background:#a36d08}
 /* dots + arrows */
 .hero-controls{
-  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:18px;right:32px;
   display:flex;align-items:center;gap:10px;z-index:10;
 }
-.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:all .25s}
+.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;padding:0;transition:all .25s}
 .h-dot.active{background:#f5c842;width:22px;border-radius:4px}
 .hero-arrow{
   width:38px;height:38px;border-radius:50%;
@@ -479,13 +473,8 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20p
   .topbar{padding:6px 14px}
   .navbar{top:32px}
   .filter-strip{top:94px}
-  .hero-slides{height:auto;min-height:320px}
-  .hero-slide{flex-direction:column;position:relative;height:auto}
-  .hero-slide.active{display:flex}
-  .hero-slide:not(.active){display:none}
-  .hero-slide-img{height:220px;flex:none;width:100%}
-  .hero-slide-img::after{background:linear-gradient(to bottom,transparent,rgba(14,61,32,.8))}
-  .hero-slide-content{position:relative;width:100%;background:var(--green-dark);padding:24px 20px 44px;right:auto;top:auto;bottom:auto}
+  .hero-slides{height:320px}
+  .hero-slide-content{padding:20px 20px 44px}
   .hero-title{font-size:26px}
   .cat-tiles{grid-template-columns:repeat(2,1fr)}
   .cat-tile:first-child{grid-column:span 2;grid-row:span 1}
@@ -625,9 +614,7 @@ footer{background:var(--green-dark);color:rgba(255,255,255,.65);padding:44px 20p
 <!-- ══ ABOUT ══ -->
 <section class="about-section" id="about">
   <div class="about-inner">
-    <div class="about-img">
-      <!-- replace with: <img src="images/shop.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"> -->
-      <span class="about-img-placeholder">🌍</span>
+    <div class="about-img" style="background-image:url('images/sectiion_18.jpg');background-size:cover;background-position:center">
       <div class="about-since">Since 2010</div>
     </div>
     <div class="about-text">
@@ -919,26 +906,23 @@ function buildHero() {
   var dotsEl = document.getElementById('heroDots');
   var featured = FEATURED.map(function(id) { return PRODUCTS.find(function(p) { return p.id === id; }); });
 
+  // Real shop photos for background
+  var heroPhotos = [
+    'images/sectiion_18.jpg',
+    'images/section_7.jpeg',
+    'images/section_12.jpeg',
+    'images/section_9.jpeg',
+    'images/section_13.jpeg',
+    'images/section_2.jpeg'
+  ];
+
   featured.forEach(function(p, i) {
     var slide = document.createElement('div');
     slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+    // Set the shop photo as full-width background
+    slide.style.backgroundImage = 'url(' + heroPhotos[i % heroPhotos.length] + ')';
 
-    // image side — placeholder div with emoji, ready for real image
-    var imgDiv = document.createElement('div');
-    imgDiv.className = 'hero-slide-img ' + p.bg;
-    // Use real shop photos cycling through slides
-    var heroPhotos = ['images/sectiion_18.jpg','images/section_7.jpeg','images/section_12.jpeg',
-                      'images/section_9.jpeg','images/section_13.jpeg','images/section_2.jpeg'];
-    var heroPhoto = heroPhotos[i % heroPhotos.length];
-    imgDiv.style.backgroundImage = 'url(' + heroPhoto + ')';
-    imgDiv.style.backgroundSize = 'cover';
-    imgDiv.style.backgroundPosition = 'center';
-    var heroEmoji = document.createElement('span');
-    heroEmoji.style.cssText = 'font-size:120px;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))';
-    heroEmoji.textContent = p.emoji;
-    imgDiv.appendChild(heroEmoji);
-
-    // content overlay
+    // Text content overlaid bottom-left
     var cnt = document.createElement('div');
     cnt.className = 'hero-slide-content';
     cnt.innerHTML =
@@ -949,7 +933,6 @@ function buildHero() {
         (lang === 'es' ? 'A\u00F1adir a la cesta \u2192' : 'Add to basket \u2192') +
       '</button>';
 
-    slide.appendChild(imgDiv);
     slide.appendChild(cnt);
     container.appendChild(slide);
 
