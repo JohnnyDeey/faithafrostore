@@ -927,21 +927,7 @@ function buildHero() {
     dotsEl.appendChild(dot);
   });
 
-  // Set initial info panel content
-  updateHeroPanel(0);
   startSlideTimer();
-}
-
-function updateHeroPanel(idx) {
-  var featured = FEATURED.map(function(id) { return PRODUCTS.find(function(p) { return p.id === id; }); });
-  var p = featured[idx];
-  if (!p) return;
-  document.getElementById('heroEyebrow').textContent = p.cat.toUpperCase();
-  document.getElementById('heroTitle').textContent = p.name[lang];
-  document.getElementById('heroDesc').textContent = p.desc[lang];
-  var btn = document.getElementById('heroCtaBtn');
-  btn.textContent = lang === 'es' ? 'A\u00F1adir a la cesta \u2192' : 'Add to basket \u2192';
-  btn.onclick = function(e) { openQtyPopup(p.id, e); };
 }
 
 function goToSlide(n) {
@@ -953,7 +939,6 @@ function goToSlide(n) {
   currentSlide = (n + slides.length) % slides.length;
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
-  updateHeroPanel(currentSlide);
 }
 function nextHero() { goToSlide(currentSlide + 1); resetSlideTimer(); }
 function prevHero() { goToSlide(currentSlide - 1); resetSlideTimer(); }
@@ -967,8 +952,10 @@ function buildCatTiles() {
   var tiles = CATS.filter(function(c) { return c.id !== 'all'; });
   el.innerHTML = tiles.map(function(c, i) {
     var big = i === 0; // first tile spans 2x2
+    var bgStyle = c.img ? 'style="background-image:url(' + c.img + ');background-size:cover;background-position:center"' : '';
+    var bgClass = c.img ? '' : c.color;
     return '<div class="cat-tile' + (big ? ' cat-tile-big' : '') + '" onclick="filterAndGo(\'' + c.id + '\')">' +
-      '<div class="cat-tile-bg ' + c.color + '">' + c.emoji + '</div>' +
+      '<div class="cat-tile-bg ' + bgClass + '" ' + bgStyle + '>' + (c.img ? '' : c.emoji) + '</div>' +
       '<div class="cat-tile-overlay"></div>' +
       '<div class="cat-tile-label">' +
         '<h3>' + c[lang] + '</h3>' +
